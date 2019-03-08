@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { EsriService } from '../esri.service';
+
+@Component({
+  selector: 'map-esri',
+  templateUrl: './esri.component.html',
+  styleUrls: ['./esri.component.css']
+})
+export class EsriComponent implements OnInit {
+
+  map: any = null;
+  vector: any  =null;
+
+  constructor(public service: EsriService) { }
+
+  ngOnInit() {
+
+
+    setTimeout(() => {
+      this.loadMap();
+    }, 500);
+   
+  }
+
+  loadMap() {
+    console.log(this.service.map);
+    this.map = new this.service.map("esri-map");
+    this.vector  = new this.service.vector(this.service.vectorSubURL);
+    console.log(this.vector);
+    this.map.addLayer(this.vector);
+
+  }
+
+}
