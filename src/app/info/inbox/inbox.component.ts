@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InboxComponent implements OnInit {
 
+  info: string = "This is a hinted button";
   rotate: boolean = false;
   constructor() { }
 
