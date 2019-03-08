@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InboxComponent implements OnInit {
 
+  rotate: boolean = false;
   constructor() { }
 
   ngOnInit() {
+
+
   }
 
+  onRotate() {
+    this.rotate = !this.rotate;
+  }
 }

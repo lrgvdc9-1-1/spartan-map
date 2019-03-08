@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EsriComponent } from './map/esri/esri.component';
 import { InboxComponent } from './ticket/inbox/inbox.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { FormComponent } from './ticket/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EsriComponent,
-    InboxComponent
+    InboxComponent,
+    NavigationComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div [ngClass]="{'rotate': rotate}" class="window" style="position: absolute; top: 0; right: 0; height: 100%; width: 40%;">
+  <div class="window-caption">
+    <span style="cursor: pointer;" (click)="onRotate()" class="icon mif-cabinet ani-hover-horizontal"></span>
+    <span class="title">Inbox</span>
+    <div class="buttons">
+        <span (click)="onRotate()" class="btn-close"></span>
+    </div>
+  </div>
+
+</div>

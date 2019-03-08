@@ -6,7 +6,7 @@ import { loadModules } from 'esri-loader';
 export class EsriService {
 
   //This will contain all global variables for loading esri map
-  vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub2/VectorTileServer";
+  vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub/VectorTileServer";
 
   map: any =  null;
   vector: any = null;
@@ -17,9 +17,7 @@ export class EsriService {
 
   loadModules() {
     loadModules(["esri/map", "esri/layers/VectorTileLayer"]).then(([Map,VectorTileLayer ]) => {
-      console.log("HEY")
-      console.log(Map);
-      console.log(this);
+     
       this.map = Map;
       this.vector = VectorTileLayer;
     });

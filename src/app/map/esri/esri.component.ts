@@ -24,7 +24,7 @@ export class EsriComponent implements OnInit {
 
   loadMap() {
     console.log(this.service.map);
-    this.map = new this.service.map("esri-map");
+    this.map = new this.service.map("esri-map", {slider: false, logo: false});
     this.vector  = new this.service.vector(this.service.vectorSubURL);
     console.log(this.vector);
     this.map.addLayer(this.vector);
