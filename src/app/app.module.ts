@@ -8,6 +8,9 @@ import { InboxComponent } from './info/inbox/inbox.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FormComponent } from './ticket/form/form.component';
 import { ListInboxComponent } from './display/list-inbox/list-inbox.component';
+import { PreviewTicketComponent } from './display/preview-ticket/preview-ticket.component';
+import { PreviewCommentsComponent } from './display/preview-comments/preview-comments.component';
+import { PreviewSubdivisionComponent } from './display/preview-subdivision/preview-subdivision.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { ListInboxComponent } from './display/list-inbox/list-inbox.component';
     InboxComponent,
     NavigationComponent,
     FormComponent,
-    ListInboxComponent
+    ListInboxComponent,
+    PreviewTicketComponent,
+    PreviewCommentsComponent,
+    PreviewSubdivisionComponent
   ],
   imports: [
     BrowserModule,
