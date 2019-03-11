@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { TICKETiNBOX } from 'src/app/model/interface';
 
 @Component({
   selector: 'app-list-inbox',
@@ -8,10 +9,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ListInboxComponent implements OnInit {
 
   @Input() title: string = "";
-  tickets: Array<any> = [];
+  @Input() inbox: Array<TICKETiNBOX> = [];
   constructor() { }
 
   ngOnInit() {
+    console.log("hey"
+    )
+    console.log(this.inbox);
+  }
+
+  ngOnChanges() {
+    console.log(this.inbox);
   }
 
 }

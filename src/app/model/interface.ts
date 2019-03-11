@@ -1,6 +1,7 @@
 export interface TICKETiNBOX {
     id_ticket?:number;
     objectid?: string;
+    full_name?: string;
     cfirst_name?: string;
     clast_name?: string;
     created_date?: Date;

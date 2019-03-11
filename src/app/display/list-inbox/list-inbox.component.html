@@ -1,30 +1,30 @@
-<h2 style="text-align:center">{{title}}</h2>
+<h2 style="text-align:center">{{title}} </h2>
 <div style="background-color: #730014 !important;" class="suggest-box">
   <input type="text" placeholder="Search" data-role="input" data-clear-button="false" data-search-button="true">
   <button style="color: white;" class="button holder">
       <span class="mif-search"></span>
   </button>
 </div>
-<div>
-
-
-<div class="card">
-  <div class="card-header">
-      <div class="avatar">
-          <img src="http://lorempixel.com/68/68/people/">
-      </div>
-      <div class="name">John Doe</div>
-      <div class="date">Monday at 3:47 PM</div>
+<div *ngFor="let item of inbox; index as i;">
+  <div class="card">
+    <div class="card-header">
+        <div class="avatar">
+            <!-- <img src="http://lorempixel.com/68/68/people/"> -->
+            <img [src]="item.icon" >
+        </div>
+        <div class="name">{{item.full_name}}</div>
+        <div class="date">Monday at 3:47 PM</div>
+    </div>
+    <div class="card-content p-2">
+        <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+    </div>
+    <div class="card-footer">
+        <button class="button mif-zoom-in rounded"></button>
+        <button class="button mif-comment rounded"></button>
+        <button class="button mif-share rounded"></button>
+        <h3>{{i + 1}}</h3>
+    </div>
   </div>
-  <div class="card-content p-2">
-      <img src="http://lorempixel.com/1000/600/" style="width: 100%">
-  </div>
-  <div class="card-footer">
-      <button class="button mif-zoom-in"></button>
-      <button class="button mif-comment"></button>
-      <button class="button mif-share"></button>
-  </div>
-</div>
-  <hr>
-  <br>
+    <hr>
+    <br>
 </div>
