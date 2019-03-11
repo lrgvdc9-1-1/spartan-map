@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from  '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { ListInboxComponent } from './display/list-inbox/list-inbox.component';
 import { PreviewTicketComponent } from './display/preview-ticket/preview-ticket.component';
 import { PreviewCommentsComponent } from './display/preview-comments/preview-comments.component';
 import { PreviewSubdivisionComponent } from './display/preview-subdivision/preview-subdivision.component';
+import { ApiRoutesComponent } from './model/api-routes/api-routes.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { PreviewSubdivisionComponent } from './display/preview-subdivision/previ
     ListInboxComponent,
     PreviewTicketComponent,
     PreviewCommentsComponent,
-    PreviewSubdivisionComponent
+    PreviewSubdivisionComponent,
+    ApiRoutesComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
