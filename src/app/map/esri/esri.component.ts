@@ -29,4 +29,9 @@ export class EsriComponent implements OnInit {
 
   }
 
+  zoomToExtent(extent) {
+
+    this.map.setExtent(extent);
+  }
+
 }

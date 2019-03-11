@@ -6,8 +6,9 @@
   </div>
 
   <div style="height: 100%" class="navview-content">
-      <map-esri></map-esri>
-      <app-inbox></app-inbox>
+      
+      <map-esri #esriMap></map-esri>
+      <app-inbox [esriMap]="esriMap"></app-inbox>
   </div>
 </div>
 

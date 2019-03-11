@@ -10,16 +10,20 @@ export class EsriService {
 
   map: any =  null;
   vector: any = null;
+  esriCircle: any = null;
+  esriPoint: any = null;
 
   constructor() { 
     this.loadModules();
   }
 
   loadModules() {
-    loadModules(["esri/map", "esri/layers/VectorTileLayer"]).then(([Map,VectorTileLayer ]) => {
+    loadModules(["esri/map", "esri/layers/VectorTileLayer","esri/geometry/Circle", "esri/geometry/Point"]).then(([Map,VectorTileLayer,Circle, Point ]) => {
      
       this.map = Map;
       this.vector = VectorTileLayer;
+      this.esriCircle = Circle;
+      this.esriPoint = Point;
     });
   }
 }

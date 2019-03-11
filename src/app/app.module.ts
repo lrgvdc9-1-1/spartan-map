@@ -17,8 +17,9 @@ import { PreviewSubdivisionComponent } from './display/preview-subdivision/previ
 @NgModule({
   declarations: [
     AppComponent,
-    EsriComponent,
     InboxComponent,
+    EsriComponent,
+   
     NavigationComponent,
     FormComponent,
     ListInboxComponent,
