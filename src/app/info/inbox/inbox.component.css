@@ -6,3 +6,14 @@
     height: 30px !important;
   
 }
+
+.window {
+    position: absolute; top: 0; right: 0; height: 100%; width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .window {
+        position: absolute; top: 0; right: 0; height: 100%; width: 94%;
+    }
+  }
+
