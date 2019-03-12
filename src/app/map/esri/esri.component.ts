@@ -10,7 +10,7 @@ export class EsriComponent implements OnInit {
 
   map: any = null;
   vector: any  =null;
-
+  selectionSymbol: any = null;
   constructor(public service: EsriService) { }
 
   ngOnInit() {
@@ -18,6 +18,11 @@ export class EsriComponent implements OnInit {
 
     setTimeout(() => {
       this.loadMap();
+      var purple = this.service.esriColor.fromHex("#9E2CCF");
+      this.selectionSymbol = new this.service.esriSimpleMarkerSymbol(this.service.esriSimpleMarkerSymbol.STYLE_SQUARE, 10,
+        new this.service.esriSimpleLineSymbol(this.service.esriSimpleLineSymbol.STYLE_SOLID,
+        purple, 1),
+        purple)
     }, 500);
    
   }
@@ -29,9 +34,13 @@ export class EsriComponent implements OnInit {
 
   }
 
-  zoomToExtent(extent) {
+  zoomToExtent(extent, pnt:any = null) {
 
     this.map.setExtent(extent);
+    if(pnt) {
+        this.map.graphics.clear();
+        this.map.graphics.add(new this.service.esriGraphic(pnt, this.selectionSymbol));
+    }
   }
 
 }

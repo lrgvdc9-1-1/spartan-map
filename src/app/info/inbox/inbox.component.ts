@@ -40,7 +40,11 @@ export class InboxComponent implements OnInit {
   onZoom(item: TICKETiNBOX) {
       console.log(item);
 
-      var pnt = new this.esriService.esriPoint(item.x, item.y);
-      console.log(pnt);
+      if(item.x & item.y) {
+        var pnt = new this.esriService.esriPoint(item.x, item.y);
+        var circle = new this.esriService.esriCircle(pnt, {radius: 500});
+        this.esriMap.zoomToExtent(circle.getExtent(), pnt);
+      }
+      
   }
 }

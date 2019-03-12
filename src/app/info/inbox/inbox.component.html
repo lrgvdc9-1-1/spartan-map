@@ -7,6 +7,6 @@
     </div>
   </div>
   <div class="window-content">  
-    <app-list-inbox [inbox]="inbox" title="TICKETS"></app-list-inbox>
+    <app-list-inbox (onZoom)="onZoom($event)" [inbox]="inbox" title="TICKETS"></app-list-inbox>
   </div>
 </div>

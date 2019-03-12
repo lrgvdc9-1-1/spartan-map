@@ -10,20 +10,32 @@ export class EsriService {
 
   map: any =  null;
   vector: any = null;
+  esriColor: any = null;
   esriCircle: any = null;
+  esriGraphic: any = null;
   esriPoint: any = null;
+  esriSimpleMarkerSymbol: any = null;
+  esriSimpleLineSymbol: any = null;
+  esriPictureMarkerSymbol: any = null;
 
   constructor() { 
     this.loadModules();
   }
 
   loadModules() {
-    loadModules(["esri/map", "esri/layers/VectorTileLayer","esri/geometry/Circle", "esri/geometry/Point"]).then(([Map,VectorTileLayer,Circle, Point ]) => {
+    loadModules(["esri/Color", "esri/map","esri/graphic", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
+    "esri/geometry/Point","esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
+    .then(([Color, Map,Graphic, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
      
       this.map = Map;
-      this.vector = VectorTileLayer;
+      this.vector     = VectorTileLayer;
+      this.esriColor  = Color;
       this.esriCircle = Circle;
-      this.esriPoint = Point;
+      this.esriGraphic = Graphic;
+      this.esriPoint  = Point;
+      this.esriPictureMarkerSymbol = PictureMarkerSymbol;
+      this.esriSimpleLineSymbol    = SimpleLineSymbol;
+      this.esriSimpleMarkerSymbol  = SimpleMarkerSymbol;
     });
   }
 }

@@ -1,5 +1,5 @@
 <h2 style="text-align:center">{{title}} </h2>
-<div style="background-color: #730014 !important;" class="suggest-box">
+<div style="background-color: #9E2CCF !important;" class="suggest-box">
   <input type="text" placeholder="Search" data-role="input" data-clear-button="false" data-search-button="true">
   <button style="color: white;" class="button holder">
       <span class="mif-search"></span>
@@ -19,7 +19,7 @@
         <img src="http://lorempixel.com/1000/600/" style="width: 100%">
     </div>
     <div class="card-footer">
-        <button class="button mif-zoom-in rounded"></button>
+        <button (click)="onZOOM(item)" class="button mif-zoom-in rounded"></button>
         <button class="button mif-comment rounded"></button>
         <button class="button mif-share rounded"></button>
         <h3>{{i + 1}}</h3>

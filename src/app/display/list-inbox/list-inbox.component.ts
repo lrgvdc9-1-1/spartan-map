@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TICKETiNBOX } from 'src/app/model/interface';
 
 @Component({
@@ -10,6 +10,7 @@ export class ListInboxComponent implements OnInit {
 
   @Input() title: string = "";
   @Input() inbox: Array<TICKETiNBOX> = [];
+  @Output() onZoom = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
@@ -18,8 +19,8 @@ export class ListInboxComponent implements OnInit {
     console.log(this.inbox);
   }
 
-  ngOnChanges() {
-    console.log(this.inbox);
+  onZOOM(item) {
+    this.onZoom.next(item);
   }
 
 }
