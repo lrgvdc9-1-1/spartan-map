@@ -8,6 +8,7 @@ export interface TICKETiNBOX {
     icon?: string;
     tax_account_num?: string;
     subdivision?: string;
+    lot_num?: string;
     system_assign?: TICKETROUTE;
     view?: boolean;
     walk_in?: string;

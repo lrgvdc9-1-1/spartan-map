@@ -5,3 +5,11 @@
 .card {
     background: white;
 }
+
+.w {
+    color: #9E2CCF;
+}
+
+.btnSelected {
+    background: #E52888;
+}

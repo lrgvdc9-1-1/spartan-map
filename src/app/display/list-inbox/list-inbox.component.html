@@ -1,4 +1,4 @@
-<h2 style="text-align:center">{{title}} </h2>
+<h2 style="text-align:center">{{title + ': ' + inbox.length }} </h2>
 <div style="background-color: #9E2CCF !important;" class="suggest-box">
   <input type="text" placeholder="Search" data-role="input" data-clear-button="false" data-search-button="true">
   <button style="color: white;" class="button holder">
@@ -12,18 +12,27 @@
             <!-- <img src="http://lorempixel.com/68/68/people/"> -->
             <img [src]="item.icon" >
         </div>
+        <h2 style="text-align: center;color: #E52888;" *ngIf="item.walk_in == 'Yes'">WALK IN</h2>
         <div class="name">{{item.full_name}}</div>
-        <div class="date">Monday at 3:47 PM</div>
+        <div class="date"><a href="#">{{item.objectid}}</a></div>
+        <div class="date">{{item.created_date}}</div>
+        
     </div>
-    <div class="card-content p-2">
-        <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+    <div style="height: 250px; overflow: auto;" class="card-content p-2">
+        <!-- <img src="http://lorempixel.com/1000/600/" style="width: 100%"> -->
+        <app-preview-ticket *ngIf="!cmntOn" [ticket]="item"></app-preview-ticket>
+        <app-preview-ticket-comments *ngIf="cmntOn"></app-preview-ticket-comments>
     </div>
     <div class="card-footer">
-        <button (click)="onZOOM(item)" class="button mif-zoom-in rounded"></button>
-        <button class="button mif-comment rounded"></button>
+        <button (click)="onZOOM(item)" [ngClass]="{'btnSelected': !item.view}" class="button mif-zoom-in rounded"></button>
+        <button (click)="cmntOn = !cmntOn" [ngClass]="{'btnSelected': cmntOn}" class="button mif-comment rounded"></button>
         <button class="button mif-share rounded"></button>
-        <h3>{{i + 1}}</h3>
+        <h3  [ngClass]="{'w': !item.view}">{{i + 1}}</h3>
+        
     </div>
+    <br>
+        <small *ngIf="msgZoom"  class="text-muted">Can't zoom in no x and y available.</small>
+        <br>
   </div>
     <hr>
     <br>

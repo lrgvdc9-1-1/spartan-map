@@ -3,7 +3,8 @@ export class ROUTES {
  
     constructor() {
       this.api = {
-            inbox: "addressticket/getInbox3"
+            inbox: "addressticket/getInbox3",
+            gComments: "addressticket/getComments/?id="
 
       }
 
@@ -13,4 +14,5 @@ export class ROUTES {
 
 interface API_ROUTES {
     inbox?: string;
+    gComments?: string;
   }

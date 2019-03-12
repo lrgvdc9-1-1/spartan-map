@@ -7,7 +7,7 @@ export class EsriService {
 
   //This will contain all global variables for loading esri map
   vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub/VectorTileServer";
-
+  loaded: boolean = false;
   map: any =  null;
   vector: any = null;
   esriColor: any = null;
@@ -36,6 +36,7 @@ export class EsriService {
       this.esriPictureMarkerSymbol = PictureMarkerSymbol;
       this.esriSimpleLineSymbol    = SimpleLineSymbol;
       this.esriSimpleMarkerSymbol  = SimpleMarkerSymbol;
+      this.loaded = true;
     });
   }
 }

@@ -28,6 +28,7 @@
             "scripts": []
           },
           "configurations": {
+            
             "production": {
               "fileReplacements": [
                 {
@@ -51,6 +52,14 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "hmr" : {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with" : "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
@@ -60,6 +69,10 @@
             "browserTarget": "spartan-map:build"
           },
           "configurations": {
+            "hmr" : {
+              "hmr": true,
+              "browserTarget": "spartan-map:build:hmr"
+            },
             "production": {
               "browserTarget": "spartan-map:build:production"
             }

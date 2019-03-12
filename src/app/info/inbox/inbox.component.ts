@@ -12,9 +12,10 @@ import { EsriService } from 'src/app/map/esri.service';
 export class InboxComponent implements OnInit {
 
   info: string = "This is a hinted button";
-  rotate: boolean = true;
+  rotate: boolean = false;
   @Input() esriMap: EsriComponent;
   inbox: Array<TICKETiNBOX> = [];
+  inboxSelected: TICKETiNBOX = null;
   constructor(private service: HttpService, private esriService: EsriService) { }
 
   ngOnInit() {
@@ -28,9 +29,15 @@ export class InboxComponent implements OnInit {
   getInbox() {
     
     this.service.getInbox(17).subscribe((inbox) => {
-      
-      this.inbox = (inbox.data.length > 0) ? inbox.data : [];
-      console.log(this.inbox);
+      var len = inbox.data.length;
+      let data:Array<TICKETiNBOX> = (inbox.data.length > 0) ? inbox.data : [];
+      for(var i = 0; i < len; i++) {
+         data[i].created_date = new Date(data[i].created_date);
+
+      }
+      console.log(data);
+      this.inbox = data;
+     
   });
   }
 
@@ -38,13 +45,31 @@ export class InboxComponent implements OnInit {
     this.rotate = !this.rotate;
   }
   onZoom(item: TICKETiNBOX) {
-      console.log(item);
 
-      if(item.x & item.y) {
-        var pnt = new this.esriService.esriPoint(item.x, item.y);
-        var circle = new this.esriService.esriCircle(pnt, {radius: 500});
-        this.esriMap.zoomToExtent(circle.getExtent(), pnt);
+      if(item.view) {
+
+
+
+        if(this.inboxSelected) {
+
+          this.inboxSelected.view = true;
+        }
+        this.inboxSelected = item;
+        if(item.x && item.y) {
+          var pnt = new this.esriService.esriPoint(item.x, item.y);
+          var circle = new this.esriService.esriCircle(pnt, {radius: 500});
+          this.esriMap.zoomToExtent(circle.getExtent(), pnt);
+        }
       }
+
+      item.view = !item.view;
+
+      if(item.view) {
+        this.esriMap.clearMainGraphics();
+        this.inboxSelected = null;
+      }
+
+     
       
   }
 }

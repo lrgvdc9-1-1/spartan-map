@@ -10,7 +10,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FormComponent } from './ticket/form/form.component';
 import { ListInboxComponent } from './display/list-inbox/list-inbox.component';
 import { PreviewTicketComponent } from './display/preview-ticket/preview-ticket.component';
-import { PreviewCommentsComponent } from './display/preview-comments/preview-comments.component';
+import { PreviewTicketCommentsComponent } from './display/preview-ticket-comments/preview-comments.component';
 import { PreviewSubdivisionComponent } from './display/preview-subdivision/preview-subdivision.component';
 
 
@@ -24,7 +24,7 @@ import { PreviewSubdivisionComponent } from './display/preview-subdivision/previ
     FormComponent,
     ListInboxComponent,
     PreviewTicketComponent,
-    PreviewCommentsComponent,
+    PreviewTicketCommentsComponent,
     PreviewSubdivisionComponent
   ],
   imports: [

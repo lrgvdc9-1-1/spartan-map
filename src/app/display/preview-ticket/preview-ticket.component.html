@@ -1,3 +1,47 @@
-<p>
-  preview-ticket works!
-</p>
+<form>
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="previewInput" [value]="ticket.cfirst_name" disabled>
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="previewInput" [value]="ticket.clast_name" disabled>
+    </div>
+    
+    <div class="form-group">
+            <label>Subdivision</label>
+            <input type="text" class="previewInput" [value]="ticket.subdivision" disabled>
+    </div>
+    <div class="form-group">
+            <label>Subdivision</label>
+            <input type="text" class="previewInput" [value]="ticket.subdivision" disabled>
+    </div>
+    <div class="form-group">
+            <label>Lot</label>
+            <input type="text" class="previewInput" [value]="ticket.lot_num" disabled>
+    </div>
+    <div class="form-group">
+            <label>X</label>
+            
+            <div class="input">
+                <input id="{{ticket.id_ticket}}" type="text" class="previewInput" data-role="input" data-custom-buttons="customButtons" [value]="ticket.x" disabled >
+                <div class="button-group">
+                    <button (click)="onCopy(ticket.id_ticket)" class="button input-custom-button warning"  type="button">
+                        <span class="mif-copy"></span>
+                    </button>
+                </div>
+            </div>
+    </div>
+    <div class="form-group">
+            <label>Y</label>
+            <div class="input">
+                    <input id="{{ticket.objectid}}" type="text" class="previewInput" data-role="input" data-custom-buttons="customButtons" [value]="ticket.y" disabled >
+                    <div class="button-group">
+                        <button (click)="onCopy(ticket.objectid)" class="button input-custom-button warning"  type="button">
+                            <span class="mif-copy"></span>
+                        </button>
+                    </div>
+                </div>
+    </div>
+    
+</form>

@@ -55,9 +55,9 @@ textarea,
 .input,
 .textarea,
 .select {
-  background-color: #212121;
-  color: #ffffff;
-  border-color: #201325 !important;
+  /* background-color: #212121; */
+  color: #40214D;
+  border-color: #40214D !important;
 }
 input[type=text]:focus,
 input[type=password]:focus,

@@ -16,14 +16,18 @@ export class EsriComponent implements OnInit {
   ngOnInit() {
 
 
-    setTimeout(() => {
-      this.loadMap();
-      var purple = this.service.esriColor.fromHex("#9E2CCF");
-      this.selectionSymbol = new this.service.esriSimpleMarkerSymbol(this.service.esriSimpleMarkerSymbol.STYLE_SQUARE, 10,
-        new this.service.esriSimpleLineSymbol(this.service.esriSimpleLineSymbol.STYLE_SOLID,
-        purple, 1),
-        purple)
-    }, 500);
+   var timeout = setInterval(() => {
+      if(this.service.loaded) {
+         this.loadMap();
+          var purple = this.service.esriColor.fromHex("#9E2CCF");
+          this.selectionSymbol = new this.service.esriSimpleMarkerSymbol(this.service.esriSimpleMarkerSymbol.STYLE_SQUARE, 10,
+            new this.service.esriSimpleLineSymbol(this.service.esriSimpleLineSymbol.STYLE_SOLID,
+            purple, 1),
+            purple)
+            clearInterval(timeout); //Stop the looping..
+          }
+    }, 40);
+      
    
   }
 
@@ -34,6 +38,8 @@ export class EsriComponent implements OnInit {
 
   }
 
+
+  //Zoom to Particular Extent if pnt provided will display selection graphic...
   zoomToExtent(extent, pnt:any = null) {
 
     this.map.setExtent(extent);
@@ -41,6 +47,10 @@ export class EsriComponent implements OnInit {
         this.map.graphics.clear();
         this.map.graphics.add(new this.service.esriGraphic(pnt, this.selectionSymbol));
     }
+  }
+
+  clearMainGraphics() {
+    this.map.graphics.clear();
   }
 
 }

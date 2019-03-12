@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-preview-comments',
+  selector: 'app-preview-ticket-comments',
   templateUrl: './preview-comments.component.html',
   styleUrls: ['./preview-comments.component.css']
 })
-export class PreviewCommentsComponent implements OnInit {
+export class PreviewTicketCommentsComponent implements OnInit {
 
   constructor() { }
 

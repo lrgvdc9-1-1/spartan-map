@@ -11,6 +11,8 @@ export class ListInboxComponent implements OnInit {
   @Input() title: string = "";
   @Input() inbox: Array<TICKETiNBOX> = [];
   @Output() onZoom = new EventEmitter<any>();
+  msgZoom: boolean = false;
+  cmntOn: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -19,7 +21,16 @@ export class ListInboxComponent implements OnInit {
     console.log(this.inbox);
   }
 
-  onZOOM(item) {
+  onZOOM(item:TICKETiNBOX) {
+
+
+    if(!item.x && !item.y) {
+      console.log(item);
+      console.log('HELLO');
+      this.msgZoom = true;
+      return;
+    }
+    this.msgZoom = false;
     this.onZoom.next(item);
   }
 
