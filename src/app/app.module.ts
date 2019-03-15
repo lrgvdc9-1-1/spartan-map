@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from  '@angular/common/http';
 import { ResizableModule } from 'angular-resizable-element';
 
@@ -7,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EsriComponent } from './map/esri/esri.component';
 import { InboxComponent } from './windows/inbox/inbox.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './pages/navigation/navigation.component';
 import { FormComponent } from './windows/ticket/form/form.component';
 import { ListInboxComponent } from './previews/list-inbox/list-inbox.component';
 import { PreviewTicketComponent } from './previews/ticket/preview-ticket.component';
@@ -30,6 +31,7 @@ import { PreviewSubdivisionComponent } from './previews/subdivision/preview-subd
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     ResizableModule,
     AppRoutingModule
