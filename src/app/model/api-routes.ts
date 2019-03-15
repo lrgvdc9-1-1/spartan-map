@@ -4,15 +4,14 @@ export class ROUTES {
     constructor() {
       this.api = {
             inbox: "addressticket/getInbox3",
-            gComments: "addressticket/getComments/?id="
-
+            gComments: "addressticket/getComments/?id=",
+            iComment: "addressticket/insertComm"
       }
-
     }
-
 }
 
 interface API_ROUTES {
     inbox?: string;
     gComments?: string;
+    iComment?: string;
   }

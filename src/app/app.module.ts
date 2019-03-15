@@ -14,6 +14,7 @@ import { ListInboxComponent } from './previews/list-inbox/list-inbox.component';
 import { PreviewTicketComponent } from './previews/ticket/preview-ticket.component';
 import { PreviewTicketCommentsComponent } from './previews/ticket-comments/preview-comments.component';
 import { PreviewSubdivisionComponent } from './previews/subdivision/preview-subdivision.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { PreviewSubdivisionComponent } from './previews/subdivision/preview-subd
     ListInboxComponent,
     PreviewTicketComponent,
     PreviewTicketCommentsComponent,
-    PreviewSubdivisionComponent
+    PreviewSubdivisionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
