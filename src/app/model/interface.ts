@@ -37,8 +37,9 @@ export interface COMMENT {
     ticket_number?: number;
     time_track?: string;
     time_stamp?: string;
-    time_track_int?: number;
+    time_track_int?: string;
     user_id?: number;
+    bwtime?: number;
 }
 
 

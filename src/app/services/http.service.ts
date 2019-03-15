@@ -23,6 +23,10 @@ export class HttpService {
   getComments(ticket:number):Observable<any>{
     return this.httpClient.get<any>(this.url + this.routes.api.gComments + ticket);
   }
+
+  insertComment(obj):Observable<any>{
+    return this.httpClient.post<any>(this.url + this.routes.api.iComment, {data: obj });
+  }
 }
 
 
