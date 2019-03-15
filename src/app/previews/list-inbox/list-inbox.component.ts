@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TICKETiNBOX } from 'src/app/model/interface';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-list-inbox',
@@ -32,8 +33,21 @@ export class ListInboxComponent implements OnInit {
   }
 
   onAddC(item) {
-    item.comment = true;
-    this.onAddComment = !this.onAddComment;
+
+  
+      item.comment = true;
+      this.onAddComment = !this.onAddComment;
+
+    
+  }
+
+  onPreviewC(item) {
+    if(this.onAddComment) {
+       item.comment = true;
+       this.onAddComment = false;
+    }else {
+      item.comment = !item.comment;
+    }
   }
 
 }

@@ -29,7 +29,7 @@
         <div class="dropdown-button">
             <button [ngClass]="{'btnSelected': item.comment}" class="button  rounded dropdown-toggle"><span class="mif-comment"></span></button>
             <ul class="d-menu" data-role="dropdown">
-                <li><a (click)="item.comment = !item.comment" [ngClass]="{'btnSelected': item.comment}">View Comments</a></li>
+                <li><a (click)="onPreviewC(item)" [ngClass]="{'btnSelected': item.comment}">View Comments</a></li>
                 <li><a (click)="onAddC(item)">Add Comment</a></li>
             </ul>
         </div>
