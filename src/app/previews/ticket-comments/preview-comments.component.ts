@@ -10,7 +10,11 @@ import { COMMENT } from 'src/app/model/interface';
 })
 export class PreviewTicketCommentsComponent implements OnInit {
   @Input() ticketNumber: number = 0;
-  comments:Array<COMMENT> = []
+  @Input() onEdit: boolean = false;
+
+  comments:Array<COMMENT> = []; 
+  message: string = "";
+
   constructor(private service:HttpService) { }
 
   ngOnInit() {

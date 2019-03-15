@@ -11,7 +11,7 @@ export class ListInboxComponent implements OnInit {
   @Input() title: string = "";
   @Input() inbox: Array<TICKETiNBOX> = [];
   @Output() onZoom = new EventEmitter<any>();
-
+  onAddComment: boolean = false;
   cmntOn: boolean = false;
   constructor() { }
 
@@ -29,6 +29,11 @@ export class ListInboxComponent implements OnInit {
     item.view = !item.view;
     item.zoomIn = false;
     this.onZoom.next(item);
+  }
+
+  onAddC(item) {
+    item.comment = true;
+    this.onAddComment = !this.onAddComment;
   }
 
 }

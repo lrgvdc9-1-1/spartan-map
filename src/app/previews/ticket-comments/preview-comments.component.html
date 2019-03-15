@@ -1,4 +1,4 @@
-<ul class="items-list">
+<ul *ngIf="!onEdit" class="items-list">
     <li *ngFor="let item of comments">
         <img class="avatar" src="https://svgshare.com/i/65U.svg">
         <span class="label">{{item.first_name + " " + item.last_name}}</span>
@@ -6,3 +6,12 @@
         <span class="second-action mif-alarm fg-red">{{item.time_stamp}}</span>
     </li>
 </ul>
+<form *ngIf="onEdit">
+    <div class="form-group">
+        <textarea [(ngModel)]="message" data-role="textarea"></textarea>
+    </div>
+    
+    <div class="form-group">
+        <button class="button">Submit Comment</button>
+    </div>
+</form>
