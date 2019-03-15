@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TICKETiNBOX } from 'src/app/model/interface';
-import { isNgTemplate } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-list-inbox',
