@@ -15,6 +15,8 @@ import { PreviewTicketComponent } from './previews/ticket/preview-ticket.compone
 import { PreviewTicketCommentsComponent } from './previews/ticket-comments/preview-comments.component';
 import { PreviewSubdivisionComponent } from './previews/subdivision/preview-subdivision.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { UppercaseDirective } from './model/directives/uppercase.directive';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { LoginComponent } from './pages/login/login.component';
     PreviewTicketComponent,
     PreviewTicketCommentsComponent,
     PreviewSubdivisionComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    UppercaseDirective
   ],
   imports: [
     BrowserModule,

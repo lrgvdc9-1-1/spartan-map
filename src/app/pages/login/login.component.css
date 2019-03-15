@@ -1,0 +1,26 @@
+/* .login-form {
+    width: 350px;
+    height: auto;
+    top: 50%;
+    margin-top: -160px;
+} */
+[class*=mif-] {
+    color: #E52888;
+}
+.text-light{
+  color: #912E60;
+  text-align: center;
+}
+.login-form {
+    width: 28rem;
+    height: 18.65rem;
+    position: fixed;
+    top: 50%;
+    margin-top: -9.375rem;
+    left: 40%;
+    margin-left: -12.5rem;
+    background-color: #ffffff;
+   
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
+}
