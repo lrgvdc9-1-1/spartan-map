@@ -1,3 +1,17 @@
 .items-list>li .second-action {
     width: auto !important;
 }
+
+.items-list > li {
+    height: auto;
+}
+
+.second-label{
+
+    
+        display:block;
+        width:340px;
+       
+        word-wrap:break-word;
+
+}

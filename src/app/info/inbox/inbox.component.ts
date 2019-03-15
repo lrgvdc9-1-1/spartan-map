@@ -3,6 +3,7 @@ import { HttpService } from '../../services/http.service';
 import {TICKETiNBOX} from '../../model/interface';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
 import { EsriService } from 'src/app/map/esri.service';
+import {ResizeEvent} from 'angular-resizable-element';
 
 @Component({
   selector: 'app-inbox',
@@ -10,7 +11,7 @@ import { EsriService } from 'src/app/map/esri.service';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
-
+  public style: object = {};
   info: string = "This is a hinted button";
   rotate: boolean = false;
   @Input() esriMap: EsriComponent;
@@ -31,10 +32,7 @@ export class InboxComponent implements OnInit {
     this.service.getInbox(17).subscribe((inbox) => {
       var len = inbox.data.length;
       let data:Array<TICKETiNBOX> = (inbox.data.length > 0) ? inbox.data : [];
-      for(var i = 0; i < len; i++) {
-         data[i].created_date = new Date(data[i].created_date);
-
-      }
+     
       console.log(data);
       this.inbox = data;
      
@@ -52,7 +50,7 @@ export class InboxComponent implements OnInit {
 
         if(this.inboxSelected) {
 
-          this.inboxSelected.view = true;
+          this.inboxSelected.view = false;
         }
         this.inboxSelected = item;
         if(item.x && item.y) {
@@ -62,9 +60,9 @@ export class InboxComponent implements OnInit {
         }
       }
 
-      item.view = !item.view;
+      
 
-      if(item.view) {
+      if(!item.view) {
         this.esriMap.clearMainGraphics();
         this.inboxSelected = null;
       }
@@ -72,4 +70,29 @@ export class InboxComponent implements OnInit {
      
       
   }
+
+
+  validate(event: ResizeEvent): boolean {
+    const MIN_DIMENSIONS_PX: number = 50;
+    if (
+      event.rectangle.width &&
+      event.rectangle.height &&
+      (event.rectangle.width < MIN_DIMENSIONS_PX ||
+        event.rectangle.height < MIN_DIMENSIONS_PX)
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  onResizeEnd(event: ResizeEvent): void {
+    this.style = {
+      position: 'fixed',
+     
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.height}px`
+    };
+  }
+
+
 }

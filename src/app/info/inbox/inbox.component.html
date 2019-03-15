@@ -1,12 +1,19 @@
-<div [ngClass]="{'rotate': rotate}"   class="window" >
-  <div class="window-caption" data-hint-position="bottom" data-role="hint" data-hint-text="This shows the tickets and subdivisions assign to the current user.">
-    <span style="cursor: pointer;" (click)="onRotate()" class="icon mif-cabinet ani-hover-horizontal"></span>
-    <span class="title">Inbox</span>
-    <div class="buttons">
-        <span (click)="onRotate()" class="btn-close"></span>
+
+  <div  mwlResizable [validateResize]="validate"
+  [enableGhostResize]="true"
+  [ngStyle]="style"
+  (resizeEnd)="onResizeEnd($event)"
+  [resizeEdges]="{ left: true}" [ngClass]="{'rotate': rotate}"   class="window" >
+    <div class="window-caption" data-hint-position="bottom" data-role="hint" data-hint-text="This shows the tickets and subdivisions assign to the current user.">
+      <span style="cursor: pointer;" (click)="onRotate()" class="icon mif-cabinet ani-hover-horizontal"></span>
+      <span class="title">Inbox</span>
+      <div class="buttons">
+          <span (click)="onRotate()" class="btn-close"></span>
+      </div>
+    </div>
+    <div class="window-content">  
+      <app-list-inbox (onZoom)="onZoom($event)" [inbox]="inbox" title="TICKETS"></app-list-inbox>
     </div>
   </div>
-  <div class="window-content">  
-    <app-list-inbox (onZoom)="onZoom($event)" [inbox]="inbox" title="TICKETS"></app-list-inbox>
-  </div>
-</div>
+
+

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from  '@angular/common/http';
+import { ResizableModule } from 'angular-resizable-element';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { PreviewSubdivisionComponent } from './display/preview-subdivision/previ
   imports: [
     BrowserModule,
     HttpClientModule,
+    ResizableModule,
     AppRoutingModule
   ],
   providers: [],

@@ -19,6 +19,10 @@ export class HttpService {
       //console.log(this.url + this.routes.api.inbox);
       return this.httpClient.post<any>(this.url + this.routes.api.inbox, {data: userid});
   }
+
+  getComments(ticket:number):Observable<any>{
+    return this.httpClient.get<any>(this.url + this.routes.api.gComments + ticket);
+  }
 }
 
 

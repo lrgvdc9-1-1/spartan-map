@@ -1,13 +1,8 @@
 <ul class="items-list">
-    <li>
+    <li *ngFor="let item of comments">
         <img class="avatar" src="https://svgshare.com/i/65U.svg">
-        <span class="label">List item</span>
-        <span class="second-label">second label</span>
-        <span class="second-action mif-alarm fg-red">time</span>
-    </li>
-
-    <li class="item ">
-        <img class="avatar" src="https://svgshare.com/i/65U.svg">
-        <span class="label">List item</span>
+        <span class="label">{{item.first_name + " " + item.last_name}}</span>
+        <span class="second-label">{{item.ticket_comments}}</span>
+        <span class="second-action mif-alarm fg-red">{{item.time_stamp}}</span>
     </li>
 </ul>

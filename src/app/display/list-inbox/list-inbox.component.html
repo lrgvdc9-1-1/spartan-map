@@ -20,18 +20,26 @@
     </div>
     <div style="height: 250px; overflow: auto;" class="card-content p-2">
         <!-- <img src="http://lorempixel.com/1000/600/" style="width: 100%"> -->
-        <app-preview-ticket *ngIf="!cmntOn" [ticket]="item"></app-preview-ticket>
-        <app-preview-ticket-comments *ngIf="cmntOn"></app-preview-ticket-comments>
+        <app-preview-ticket *ngIf="!item.comment" [ticket]="item"></app-preview-ticket>
+        <app-preview-ticket-comments [ticketNumber]="item.id_ticket" *ngIf="item.comment"></app-preview-ticket-comments>
     </div>
     <div class="card-footer">
-        <button (click)="onZOOM(item)" [ngClass]="{'btnSelected': !item.view}" class="button mif-zoom-in rounded"></button>
-        <button (click)="cmntOn = !cmntOn" [ngClass]="{'btnSelected': cmntOn}" class="button mif-comment rounded"></button>
+        <button (click)="onZOOM(item)" [ngClass]="{'btnSelected': item.view}" class="button mif-zoom-in rounded"></button>
+       
+        <div class="dropdown-button">
+            <button [ngClass]="{'btnSelected': item.comment}" class="button  rounded dropdown-toggle"><span class="mif-comment"></span></button>
+            <ul class="d-menu" data-role="dropdown">
+                <li><a (click)="item.comment = !item.comment" [ngClass]="{'btnSelected': item.comment}">View Comments</a></li>
+                <li><a href="#">Add Comment</a></li>
+            </ul>
+        </div>
+        
         <button class="button mif-share rounded"></button>
-        <h3  [ngClass]="{'w': !item.view}">{{i + 1}}</h3>
+        <h3  [ngClass]="{'w': item.view}">{{i + 1}}</h3>
         
     </div>
     <br>
-        <small *ngIf="msgZoom"  class="text-muted">Can't zoom in no x and y available.</small>
+        <small *ngIf="item.zoomIn"  class="text-muted">Can't zoom in no x and y available.</small>
         <br>
   </div>
     <hr>
