@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { EsriComponent } from './map/esri/esri.component';
 import { InboxComponent } from './windows/inbox/inbox.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { FormComponent } from './ticket/form/form.component';
+import { FormComponent } from './windows/ticket/form/form.component';
 import { ListInboxComponent } from './previews/list-inbox/list-inbox.component';
 import { PreviewTicketComponent } from './previews/ticket/preview-ticket.component';
 import { PreviewTicketCommentsComponent } from './previews/ticket-comments/preview-comments.component';
