@@ -17,6 +17,7 @@ import { PreviewSubdivisionComponent } from './previews/subdivision/preview-subd
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UppercaseDirective } from './model/directives/uppercase.directive';
+import { MapToolbarComponent } from './windows/map-toolbar/map-toolbar.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UppercaseDirective } from './model/directives/uppercase.directive';
     PreviewSubdivisionComponent,
     LoginComponent,
     HomeComponent,
-    UppercaseDirective
+    UppercaseDirective,
+    MapToolbarComponent
   ],
   imports: [
     BrowserModule,
