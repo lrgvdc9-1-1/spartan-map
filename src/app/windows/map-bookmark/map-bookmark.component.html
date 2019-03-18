@@ -2,14 +2,25 @@
 
     <div  class="window">
         <div class="window-caption">
-            <span class="icon mif-windows"></span>
+            <span class="icon mif-bookmarks"></span>
             <span class="title">Bookmarks</span>
             <div (click)="onClose()" class="buttons">
                 <span class="btn-close"></span>
             </div>
         </div>
         <div class="window-content p-2">
-            Window content
+            <div class="form-group">
+                <label>Bookmark Name</label>
+                <input type="text" placeholder="Enter name"/>
+                
+            <div class="form-group">
+                    <label>Comment</label>
+                <textarea data-role="textarea"></textarea>
+            </div>
+            <div class="form-group">
+                    <button class="button bg-teal">Submit Bookmark</button>
+                    
+            </div>
         </div>
     </div>
 </div>
