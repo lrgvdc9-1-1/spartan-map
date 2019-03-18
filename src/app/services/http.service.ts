@@ -27,6 +27,10 @@ export class HttpService {
   insertComment(obj):Observable<any>{
     return this.httpClient.post<any>(this.url + this.routes.api.iComment, {data: obj });
   }
+
+  saveBookmark(obj):Observable<any> {
+    return this.httpClient.post<any>(this.url + this.routes.api.sBookmark, {data: obj});
+  }
 }
 
 

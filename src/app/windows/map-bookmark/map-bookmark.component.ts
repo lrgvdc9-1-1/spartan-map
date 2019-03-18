@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-map-bookmark',
@@ -8,13 +9,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class MapBookmarkComponent implements OnInit {
 
   @Output() close = new EventEmitter<any>();
-  constructor() { }
+  constructor(private service: HttpService) { }
 
   ngOnInit() {
   }
 
   onClose() {
     this.close.emit(false);
+  }
+
+  onSave() {
+    
+    this.service.saveBookmark({}).subscribe((response:any) => {
+        console.log(response);
+    });
   }
 
 }

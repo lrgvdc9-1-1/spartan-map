@@ -65,4 +65,5 @@ export interface BOOKMARK {
     bookmark_name?: string;
     bookmark_comments?: string;
     user_id?: number;
+    extent?: any;
 }

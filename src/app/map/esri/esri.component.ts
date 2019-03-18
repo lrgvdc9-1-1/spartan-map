@@ -13,6 +13,7 @@ export class EsriComponent implements OnInit {
   map: any = null;
   vector: any  =null;
   selectionSymbol: any = null;
+  mapExtentChange: any = null;
   public homeExtent: any = null;
   constructor(public service: EsriService) { }
 
@@ -40,11 +41,15 @@ export class EsriComponent implements OnInit {
     this.vector  = new this.service.vector(this.service.vectorSubURL);
     this.map.addLayer(this.vector);
 
+
+    // Events Capture from map..
     this.map.on("load", () => {
         this.homeExtent = this.map.extent;
 
         console.log(this.homeExtent);
     });
+
+    // Map Change
   }
 
 
