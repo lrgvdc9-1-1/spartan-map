@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { InboxComponent } from '../inbox/inbox.component';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
+
 
 @Component({
   selector: 'app-map-toolbar',
@@ -12,7 +13,7 @@ export class MapToolbarComponent implements OnInit {
   mini: boolean = true;
   @Input() inbox: InboxComponent;
   @Input() esriMap: EsriComponent;
-
+  @Output() openBookmark = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
@@ -41,6 +42,10 @@ export class MapToolbarComponent implements OnInit {
       }
 
       this.mini = !this.mini;
+  }
+
+  onOpenBookMark() {
+    this.openBookmark.emit(true);
   }
 
 }
