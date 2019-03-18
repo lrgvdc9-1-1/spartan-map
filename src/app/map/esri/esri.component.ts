@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EsriService } from '../esri.service';
 
+declare var esri;
+
 @Component({
   selector: 'map-esri',
   templateUrl: './esri.component.html',
@@ -11,6 +13,7 @@ export class EsriComponent implements OnInit {
   map: any = null;
   vector: any  =null;
   selectionSymbol: any = null;
+  public homeExtent: any = null;
   constructor(public service: EsriService) { }
 
   ngOnInit() {
@@ -19,6 +22,7 @@ export class EsriComponent implements OnInit {
    var timeout = setInterval(() => {
       if(this.service.loaded) {
          this.loadMap();
+        
           var purple = this.service.esriColor.fromHex("#9E2CCF");
           this.selectionSymbol = new this.service.esriSimpleMarkerSymbol(this.service.esriSimpleMarkerSymbol.STYLE_SQUARE, 10,
             new this.service.esriSimpleLineSymbol(this.service.esriSimpleLineSymbol.STYLE_SOLID,
@@ -36,6 +40,11 @@ export class EsriComponent implements OnInit {
     this.vector  = new this.service.vector(this.service.vectorSubURL);
     this.map.addLayer(this.vector);
 
+    this.map.on("load", () => {
+        this.homeExtent = this.map.extent;
+
+        console.log(this.homeExtent);
+    });
   }
 
 

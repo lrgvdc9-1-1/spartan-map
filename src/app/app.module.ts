@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from  '@angular/common/http';
 import { ResizableModule } from 'angular-resizable-element';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EsriComponent } from './map/esri/esri.component';
@@ -18,6 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UppercaseDirective } from './model/directives/uppercase.directive';
 import { MapToolbarComponent } from './windows/map-toolbar/map-toolbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -39,10 +40,12 @@ import { MapToolbarComponent } from './windows/map-toolbar/map-toolbar.component
   ],
   imports: [
     BrowserModule,
+    DragDropModule,
     FormsModule,
     HttpClientModule,
     ResizableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
