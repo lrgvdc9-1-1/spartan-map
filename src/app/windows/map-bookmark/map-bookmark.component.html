@@ -4,8 +4,12 @@
         <div class="window-caption bg-teal">
             <span class="icon mif-bookmarks"></span>
             <span class="title">Bookmarks</span>
-            <div (click)="onClose()" class="buttons">
-                <span class="btn-close"></span>
+            <div  class="buttons">
+                <span class="button btn-custom bg-teal">
+                    <span class="mif-plus"></span>
+                </span>
+               
+                <span (click)="onClose()" class="btn-close"></span>
             </div>
         </div>
         <div class="window-content p-2">

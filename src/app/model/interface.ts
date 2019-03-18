@@ -59,3 +59,10 @@ export interface ORGANIZATION {
     name?: string;
     address?: string;
 }
+
+export interface BOOKMARK {
+    bookmarks_id?: number;
+    bookmark_name?: string;
+    bookmark_comments?: string;
+    user_id?: number;
+}
