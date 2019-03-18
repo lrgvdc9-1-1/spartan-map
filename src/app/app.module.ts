@@ -19,6 +19,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { UppercaseDirective } from './model/directives/uppercase.directive';
 import { MapToolbarComponent } from './windows/map-toolbar/map-toolbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MapBookmarkComponent } from './windows/map-bookmark/map-bookmark.component';
+import { ProfileSettingsComponent } from './windows/profile-settings/profile-settings.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     HomeComponent,
     UppercaseDirective,
-    MapToolbarComponent
+    MapToolbarComponent,
+    MapBookmarkComponent,
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,

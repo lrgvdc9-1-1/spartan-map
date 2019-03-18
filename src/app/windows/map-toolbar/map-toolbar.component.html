@@ -1,5 +1,6 @@
 <div cdkDrag [ngStyle]="style">
-  <div class="multi-action">
+    <div style="width: 4px;height: 40px;float: left;background: #C12F79;"></div>
+  <div style="float: left" class="multi-action">
     <button (click)="onMiniBar()" class="action-button rotate-minus bg-red fg-white"
             onclick="$(this).toggleClass('active')">
         <span class="icon"><span class="mif-plus"></span></span>
@@ -7,7 +8,7 @@
     <ul class="actions drop-right">
         <li (click)="onHomeExtent()" class="bg-blue"><a href="#"><span class="mif-home"></span></a></li>
         <li class="bg-teal"><a href="#"><span class="mif-bookmarks"></span></a></li>
-        <li class="bg-pink"><a href="#"><span class="mif-alarm"></span></a></li>
+        <li class="bg-pink"><a href="#"><span class="mif-info"></span></a></li>
         <li class="bg-orange"><a href="#"><span class="mif-lock"></span></a></li>
     </ul>
 </div>

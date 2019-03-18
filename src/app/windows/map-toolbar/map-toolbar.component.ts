@@ -22,7 +22,7 @@ export class MapToolbarComponent implements OnInit {
         position: "absolute", zIndex: 2,
         bottom: "30px", 
         left: "80px",
-        width: "60px", 
+        width: "90px", 
         height: "40px",
         backgroundColor: "#201325"
       }    
@@ -35,9 +35,9 @@ export class MapToolbarComponent implements OnInit {
   onMiniBar() {
       if(this.mini) {
         console.log(this.style);
-        this.style['width'] =   "240px";
+        this.style['width'] =   "250px";
       }else {
-        this.style['width'] =  "60px";
+        this.style['width'] =  "90px";
       }
 
       this.mini = !this.mini;
