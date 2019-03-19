@@ -6,17 +6,19 @@
             <span class="title">Bookmarks</span>
             <div  class="buttons">
                 <span class="button btn-custom bg-teal">
-                    <span class="mif-table"></span>
+                    <span (click)="displayTable = true" *ngIf="!displayTable" class="mif-table"></span>
+                    <span (click)="displayTable = false"  *ngIf="displayTable" class="mif-file-text"></span>
                 </span>
                
                 <span (click)="onClose()" class="btn-close"></span>
             </div>
         </div>
         <div class="window-content p-2">
+            <div *ngIf="!displayTable">
             <div class="form-group">
                 <label>Bookmark Name</label>
                 <input type="text" placeholder="Enter name"/>
-                
+            </div>
             <div class="form-group">
                     <label>Comment</label>
                 <textarea data-role="textarea"></textarea>
@@ -25,6 +27,7 @@
                     <button (click)="onSave()" class="button bg-teal">Submit Bookmark</button>
                     
             </div>
-        </div>
+          </div>
+        <app-bookmark-table *ngIf="displayTable"></app-bookmark-table>
     </div>
 </div>

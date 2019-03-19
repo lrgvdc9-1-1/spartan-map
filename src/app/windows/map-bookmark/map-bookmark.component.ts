@@ -9,6 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class MapBookmarkComponent implements OnInit {
 
   @Output() close = new EventEmitter<any>();
+  displayTable: boolean = false;
   constructor(private service: HttpService) { }
 
   ngOnInit() {
