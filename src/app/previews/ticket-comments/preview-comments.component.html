@@ -1,9 +1,13 @@
 <ul *ngIf="!onEdit" class="items-list">
     <li *ngFor="let item of comments">
         <img class="avatar" src="https://svgshare.com/i/65U.svg">
-        <span class="label">{{item.first_name + " " + item.last_name}}</span>
+        <div>
+            <span class="label lblname" >{{item.first_name + " " + item.last_name}}</span>
+            <span class="label mif-alarm" style="float: right;">{{item.time_stamp}}</span>
+        </div>
+        
         <span class="second-label">{{item.ticket_comments}}</span>
-        <span class="second-action mif-alarm fg-red">{{item.time_stamp}}</span>
+        
     </li>
 </ul>
 <form *ngIf="onEdit">

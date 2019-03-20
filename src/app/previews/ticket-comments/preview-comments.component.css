@@ -5,13 +5,13 @@
 .items-list > li {
     height: auto;
 }
-
+.lblname {
+    float: left;
+    margin-left: 56px;
+}
 .second-label{
 
-    
-        display:block;
-        width:340px;
-       
-        word-wrap:break-word;
-
+    display:block;
+    width:340px;
+    word-wrap:break-word;
 }
