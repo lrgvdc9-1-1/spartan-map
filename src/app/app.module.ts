@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapBookmarkComponent } from './windows/map-bookmark/map-bookmark.component';
 import { ProfileSettingsComponent } from './windows/profile-settings/profile-settings.component';
 import { BookmarkTableComponent } from './previews/bookmark-table/bookmark-table.component';
+import { FilterminePipe } from './model/filtermine.pipe';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { BookmarkTableComponent } from './previews/bookmark-table/bookmark-table
     MapToolbarComponent,
     MapBookmarkComponent,
     ProfileSettingsComponent,
-    BookmarkTableComponent
+    BookmarkTableComponent,
+    FilterminePipe
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ export class ListInboxComponent implements OnInit {
   @Input() title: string = "";
   @Input() inbox: Array<TICKETiNBOX> = [];
   @Output() onZoom = new EventEmitter<any>();
+  searchAll: string= "";
   onAddComment: boolean = false;
   cmntOn: boolean = false;
   constructor() { }

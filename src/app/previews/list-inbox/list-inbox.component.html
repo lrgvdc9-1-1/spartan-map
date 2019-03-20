@@ -1,11 +1,11 @@
 <h2 style="text-align:center">{{title + ': ' + inbox.length }} </h2>
 <div style="background-color: #9E2CCF !important;" class="suggest-box">
-  <input type="text" placeholder="Search" data-role="input" data-clear-button="false" data-search-button="true">
+  <input [(ngModel)]="searchAll" uppercase type="text" placeholder="Search" data-role="input" data-clear-button="false" data-search-button="true">
   <button style="color: white;" class="button holder">
       <span class="mif-search"></span>
   </button>
 </div>
-<div *ngFor="let item of inbox; index as i;">
+<div *ngFor="let item of inbox | filtermine:searchAll; index as i;">
   <div class="card">
     <div class="card-header">
         <div class="avatar">
