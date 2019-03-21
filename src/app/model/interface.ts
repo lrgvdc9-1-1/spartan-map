@@ -73,6 +73,8 @@ export interface LAYER {
     url?: string;
     type?: string;
     base?: boolean;
+    visible?: boolean;
+    editing?: boolean;
 }
 
 export class CUSER {

@@ -7,7 +7,8 @@ export class EsriService {
 
   //This will contain all global variables for loading esri map
   vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub/VectorTileServer";
-  cityErrorURL: string = "http://gis.lrgvdc911.org/arcgis2/rest/services/Features/CityErrors/FeatureServer/0";
+  cityErrorURL: string = "http://gis.lrgvdc911.org/arcgis2/rest/services/Features/CityErrors/FeatureServer/1";
+  cityErrorAddURL: string = "http://gis.lrgvdc911.org/arcgis2/rest/services/Features/CityErrors/FeatureServer/0"
   loaded: boolean = false;
   map: any =  null;
   vector: any = null;
