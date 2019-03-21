@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigsService } from 'src/app/services/configs.service';
 
 @Component({
   selector: 'app-navigation',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavigationComponent implements OnInit {
 
   displayProfile: boolean = false;
-  constructor() { }
+  constructor(public configs: ConfigsService) { 
+
+    console.log(this.configs.selfuser.getFullName());
+  }
 
   ngOnInit() {
   }

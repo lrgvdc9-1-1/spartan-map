@@ -67,3 +67,50 @@ export interface BOOKMARK {
     user_id?: number;
     extent?: any;
 }
+
+
+export class CUSER {
+    properties: USER;
+
+    constructor() {
+        this.properties = {
+            user_id: 0,
+            first_name: "JUAN",
+            middle_name: "ENTER MIDDLE",
+            last_name: "ARRENDEDONDO",
+            initials: "ENTER INIT",
+            email: "ENTER EMAIL",
+            icon: "default",
+            organization: {
+                organization_id: 0,
+                name: "LRGVDC",
+                address: "ENTER ADDRESS"
+            }
+        }
+    }
+
+    setFName(fname: string) {
+        this.properties.first_name = fname;
+    }
+    setLName(lname: string) {
+        this.properties.last_name = lname;
+    }
+
+    setMName(mname: string) {
+        this.properties.middle_name = mname;
+    }
+
+    setEmail(email: string) {
+        this.properties.email = email;
+    }
+
+    getFName():string {
+        return this.properties.first_name
+    }
+    getFullName(): string {
+        return this.properties.first_name + " " + this.properties.last_name;
+    }
+    getOrga(): string {
+        return this.properties.organization.name;
+    }
+}
