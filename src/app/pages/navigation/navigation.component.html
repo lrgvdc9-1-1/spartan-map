@@ -1,8 +1,17 @@
 <div data-role="navview" data-expanded="fs">
   <div class="navview-pane">
-      <button style="color: white;" class="pull-button">
-          <span class="mif-menu"></span>
-      </button>
+
+
+      <div class="sidebar-header" style="background: transparent; background-image: url('assets/sb-bg.png')" >
+        <a class="fg-white sub-action">
+            <span (click)="displayProfile = !displayProfile" [ngClass]="{'mif-arrow-left': displayProfile, 'mif-arrow-right': !displayProfile}" class="mif-arrow-left mif-2x pull-button"></span>
+        </a>
+        <div *ngIf="displayProfile" class="avatar">
+            <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+        </div>
+        <span *ngIf="displayProfile" class="title">Metro 4 Components Library</span>
+        <span *ngIf="displayProfile" class="subtitle"> 2018 © Sergey Pimenov</span>
+    </div>
   </div>
 
   <div style="height: 100%" class="navview-content">
