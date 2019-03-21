@@ -42,7 +42,10 @@ export class EsriComponent implements OnInit {
     this.vector  = new this.service.vector(this.service.vectorSubURL);
     this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
-    
+    this.cityErrorsFeatures.setFeatureReduction({
+      type: "cluster",
+      clusterRadius: 50
+    });
     this.map.addLayer(this.vector);
     this.map.addLayer(this.cityErrorsFeatures); //Add City Errors To Share with entities..
 
