@@ -13,6 +13,7 @@ export class EsriComponent implements OnInit {
   map: any = null;
   vector: any  =null;
   cityErrorsFeatures: any = null;
+  cityErrorsAddress: any = null;
   selectionSymbol: any = null;
   mapExtentChange: any = null;
   public homeExtent: any = null;

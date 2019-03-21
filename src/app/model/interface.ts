@@ -68,6 +68,14 @@ export interface BOOKMARK {
     extent?: any;
 }
 
+export interface LAYER {
+    name?: string;
+    url?: string;
+    type?: string;
+    base?: boolean;
+    visible?: boolean;
+    editing?: boolean;
+}
 
 //Classes 
 
