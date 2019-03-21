@@ -17,11 +17,11 @@
             <div *ngIf="!displayTable">
             <div class="form-group">
                 <label>Bookmark Name</label>
-                <input type="text" placeholder="Enter name"/>
+                <input type="text" [(ngModel)]="bookmark.bookmark_name" uppercase placeholder="Enter name"/>
             </div>
             <div class="form-group">
                     <label>Comment</label>
-                <textarea data-role="textarea"></textarea>
+                <textarea [(ngModel)]="bookmark.bookmark_comments" uppercase data-role="textarea"></textarea>
             </div>
             <div class="form-group">
                     <button (click)="onSave()" class="button bg-teal">Submit Bookmark</button>

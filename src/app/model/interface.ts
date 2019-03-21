@@ -69,6 +69,8 @@ export interface BOOKMARK {
 }
 
 
+//Classes 
+
 export class CUSER {
     properties: USER;
 
