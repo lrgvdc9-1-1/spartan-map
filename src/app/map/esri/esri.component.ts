@@ -12,6 +12,7 @@ export class EsriComponent implements OnInit {
 
   map: any = null;
   vector: any  =null;
+  cityErrorsFeatures: any = null;
   selectionSymbol: any = null;
   mapExtentChange: any = null;
   public homeExtent: any = null;
@@ -39,8 +40,11 @@ export class EsriComponent implements OnInit {
   loadMap() {
     this.map = new this.service.map("esri-map", {slider: false, logo: false});
     this.vector  = new this.service.vector(this.service.vectorSubURL);
+    this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {outFields: ["*"]});
+    this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
+    
     this.map.addLayer(this.vector);
-
+    this.map.addLayer(this.cityErrorsFeatures); //Add City Errors To Share with entities..
 
     // Events Capture from map..
     this.map.on("load", () => {

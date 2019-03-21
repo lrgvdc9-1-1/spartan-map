@@ -7,11 +7,14 @@ export class EsriService {
 
   //This will contain all global variables for loading esri map
   vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub/VectorTileServer";
+  cityErrorURL: string = "http://gis.lrgvdc911.org/arcgis2/rest/services/Features/CityErrors/FeatureServer/0";
   loaded: boolean = false;
   map: any =  null;
   vector: any = null;
   esriColor: any = null;
   esriCircle: any = null;
+  esriFeatureTable: any = null;
+  esriFeatureLayer: any =null;
   esriGraphic: any = null;
   esriPoint: any = null;
   esriSimpleMarkerSymbol: any = null;
@@ -23,11 +26,13 @@ export class EsriService {
   }
 
   loadModules() {
-    loadModules(["esri/Color", "esri/map","esri/graphic", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
+    loadModules(["esri/Color", "esri/map","esri/graphic","esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
     "esri/geometry/Point","esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
-    .then(([Color, Map,Graphic, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
+    .then(([Color, Map,Graphic,FeatureTable, FeatureLayer, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
      
       this.map = Map;
+      this.esriFeatureTable = FeatureTable;
+      this.esriFeatureLayer = FeatureLayer;
       this.vector     = VectorTileLayer;
       this.esriColor  = Color;
       this.esriCircle = Circle;
