@@ -14,6 +14,7 @@ export class EsriService {
   vector: any = null;
   esriColor: any = null;
   esriCircle: any = null;
+  esriExtent: any = null;
   esriFeatureTable: any = null;
   esriFeatureLayer: any =null;
   esriGraphic: any = null;
@@ -29,11 +30,12 @@ export class EsriService {
   }
 
   loadModules() {
-    loadModules(["esri/Color","esri/SpatialReference", "esri/map","esri/graphic","esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
+    loadModules(["esri/Color","esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
     "esri/geometry/Point","esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
-    .then(([Color,SpatialReference, Map,Graphic,FeatureTable, FeatureLayer, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
+    .then(([Color,SpatialReference, Map,Graphic,Extent, FeatureTable, FeatureLayer, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
      
       this.map = Map;
+      this.esriExtent = Extent;
       this.esriSpatialReference = SpatialReference;
       this.esriFeatureTable = FeatureTable;
       this.esriFeatureLayer = FeatureLayer;

@@ -23,6 +23,7 @@ import { MapBookmarkComponent } from './windows/map-bookmark/map-bookmark.compon
 import { ProfileSettingsComponent } from './windows/profile-settings/profile-settings.component';
 import { BookmarkTableComponent } from './previews/bookmark-table/bookmark-table.component';
 import { FilterminePipe } from './model/filtermine.pipe';
+import { ConfirmComponent } from './windows/confirm/confirm.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { FilterminePipe } from './model/filtermine.pipe';
     MapBookmarkComponent,
     ProfileSettingsComponent,
     BookmarkTableComponent,
-    FilterminePipe
+    FilterminePipe,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
