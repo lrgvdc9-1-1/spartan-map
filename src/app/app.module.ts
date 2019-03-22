@@ -24,6 +24,7 @@ import { ProfileSettingsComponent } from './windows/profile-settings/profile-set
 import { BookmarkTableComponent } from './previews/bookmark-table/bookmark-table.component';
 import { FilterminePipe } from './model/filtermine.pipe';
 import { ConfirmComponent } from './windows/confirm/confirm.component';
+import { BasemapsListComponent } from './windows/basemaps-list/basemaps-list.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ConfirmComponent } from './windows/confirm/confirm.component';
     ProfileSettingsComponent,
     BookmarkTableComponent,
     FilterminePipe,
-    ConfirmComponent
+    ConfirmComponent,
+    BasemapsListComponent
   ],
   imports: [
     BrowserModule,
