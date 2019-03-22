@@ -25,6 +25,7 @@ import { BookmarkTableComponent } from './previews/bookmark-table/bookmark-table
 import { FilterminePipe } from './model/filtermine.pipe';
 import { ConfirmComponent } from './windows/confirm/confirm.component';
 import { BasemapsListComponent } from './windows/basemaps-list/basemaps-list.component';
+import { AttachOptionsComponent } from './windows/attach-options/attach-options.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { BasemapsListComponent } from './windows/basemaps-list/basemaps-list.com
     BookmarkTableComponent,
     FilterminePipe,
     ConfirmComponent,
-    BasemapsListComponent
+    BasemapsListComponent,
+    AttachOptionsComponent
   ],
   imports: [
     BrowserModule,
