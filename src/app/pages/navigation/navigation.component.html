@@ -1,10 +1,10 @@
-<div data-role="navview" data-expanded="fs">
-  <div class="navview-pane">
+<div style="width: 100%; height: 100%;" (window:resize)="onResize($event)" >
+  <div [ngStyle]="{'width': widthPane}" style="height: 100px; float: left;">
 
 
       <div class="sidebar-header" style="background: transparent; background-image: url('assets/sb-bg.png')" >
         <a class="fg-white sub-action">
-            <span (click)="displayProfile = !displayProfile" [ngClass]="{'mif-arrow-left': displayProfile, 'mif-arrow-right': !displayProfile}" class="mif-arrow-left mif-2x pull-button"></span>
+            <span (click)="onCSS()" [ngClass]="{'mif-arrow-left': displayProfile, 'mif-arrow-right': !displayProfile}" class="mif-arrow-left mif-2x pull-button"></span>
         </a>
         <div *ngIf="displayProfile" class="avatar">
             <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div style="height: 100%" class="navview-content">
+  <div [ngStyle]="{'width': widthContent}" style="float: left; height: 100%">
     <router-outlet></router-outlet>
      
   </div>
