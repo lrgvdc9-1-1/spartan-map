@@ -32,6 +32,11 @@ export class HttpService {
     return this.httpClient.post<any>(this.url + this.routes.api.iComment, {data: obj });
   }
 
+  deleteBookmark(obj):Observable<any> {
+    
+    return this.httpClient.post<any>(this.url + this.routes.api.dBookmark, {data: obj});
+  }
+
   saveBookmark(obj):Observable<any> {
     return this.httpClient.post<any>(this.url + this.routes.api.sBookmark, {data: obj});
   }

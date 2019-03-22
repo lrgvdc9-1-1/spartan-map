@@ -28,6 +28,7 @@
                     
             </div>
           </div>
-        <app-bookmark-table [esriMap]="esriMap" [bookmarks]="bookmarks" *ngIf="displayTable"></app-bookmark-table>
+        <app-bookmark-table [confirmation]="confirm" [esriMap]="esriMap" [bookmarks]="bookmarks" *ngIf="displayTable"></app-bookmark-table>
     </div>
 </div>
+<app-confirm #confirm message="Do you want to delete bookmark?" btnAccept="Agree" btnDisagree="Disagree"></app-confirm>

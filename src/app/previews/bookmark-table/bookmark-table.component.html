@@ -11,7 +11,7 @@
     <tr *ngFor="let item of bookmarks">
         <td>{{item.bookmark_name}}</td>
         <td>{{item.bookmark_comments}}</td>
-        <td><button (click)="onZoom(item)" class="button bg-teal ">Zoom</button><button class="button warning mif-bin"></button></td>
+        <td><button (click)="onZoom(item)" class="button bg-teal mif-zoom-in"></button><button (click)="onConfirm(item)" class="button warning mif-bin"></button></td>
     </tr>
     </tbody>
 </table>
