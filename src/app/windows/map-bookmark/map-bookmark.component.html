@@ -28,6 +28,6 @@
                     
             </div>
           </div>
-        <app-bookmark-table *ngIf="displayTable"></app-bookmark-table>
+        <app-bookmark-table [esriMap]="esriMap" [bookmarks]="bookmarks" *ngIf="displayTable"></app-bookmark-table>
     </div>
 </div>

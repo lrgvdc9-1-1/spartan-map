@@ -66,6 +66,7 @@ export interface BOOKMARK {
     bookmark_comments?: string;
     user_id?: number;
     extent?: any;
+    bookmark_json?: any;
 }
 
 export interface LAYER {

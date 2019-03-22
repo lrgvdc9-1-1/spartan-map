@@ -24,6 +24,10 @@ export class HttpService {
     return this.httpClient.get<any>(this.url + this.routes.api.gComments + ticket);
   }
 
+  getBookmarks(userid: number):Observable<any>{
+    return this.httpClient.get<any>(this.url + this.routes.api.gBookmark + userid);
+  }
+
   insertComment(obj):Observable<any>{
     return this.httpClient.post<any>(this.url + this.routes.api.iComment, {data: obj });
   }
@@ -31,6 +35,8 @@ export class HttpService {
   saveBookmark(obj):Observable<any> {
     return this.httpClient.post<any>(this.url + this.routes.api.sBookmark, {data: obj});
   }
+
+
 }
 
 

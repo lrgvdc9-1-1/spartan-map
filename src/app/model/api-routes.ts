@@ -6,7 +6,8 @@ export class ROUTES {
             inbox: "addressticket/getInbox3",
             gComments: "addressticket/getComments/?id=",
             iComment: "addressticket/insertComm",
-            sBookmark: "gis/saveBookmark"
+            sBookmark: "gis/saveBookmark",
+            gBookmark: "gis/getBookmarkUser/?id="
       }
     }
 }
@@ -16,4 +17,5 @@ interface API_ROUTES {
     gComments?: string;
     iComment?: string;
     sBookmark?: string;
+    gBookmark?: string;
   }

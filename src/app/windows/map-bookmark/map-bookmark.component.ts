@@ -13,14 +13,21 @@ export class MapBookmarkComponent implements OnInit {
   @Input() esriMap: EsriComponent;
   @Output() close = new EventEmitter<any>();
   displayTable: boolean = false;
-  spatialRef: any = null;
   bookmark: BOOKMARK = {bookmark_name: "", bookmark_comments: "", user_id: 3}; 
+  bookmarks: Array<BOOKMARK> = [];
   constructor(private service: HttpService, private esri: EsriService) { }
 
   ngOnInit() {
-    this.spatialRef = new this.esri.esriSpatialReference(4326);
+    this.getBookMarks();
   }
 
+
+  getBookMarks() {
+    this.service.getBookmarks(3).subscribe((response) => {
+     
+      this.bookmarks = response.data;
+   })
+  }
 
   onClose() {
     this.close.emit(false);
@@ -31,7 +38,9 @@ export class MapBookmarkComponent implements OnInit {
       this.bookmark.extent = JSON.stringify(this.esriMap.map.extent);
       
     this.service.saveBookmark(this.bookmark).subscribe((response:any) => {
-        console.log(response);
+        this.bookmark.bookmark_name = "";
+        this.bookmark.bookmark_comments = "";
+        this.getBookMarks();
     });
   }
 
