@@ -1,3 +1,14 @@
-<p>
-  attach-options works!
-</p>
+<div class="window" cdkDrag [ngStyle]="style">
+  <div class="window-caption bg-orange">
+      <span class="icon mif-attachment"></span>
+      <span class="title">Attach Documents</span>
+      <div class="buttons">
+            <span *ngIf="visible" (click)="getHeight()" class="btn-min"></span>
+            <span *ngIf="!visible" (click)="getHeight()" class="btn-max"></span>
+          <span class="btn-close"></span>
+      </div>
+  </div>
+  <div *ngIf="visible"  class="window-content p-2">
+      Window content
+  </div>
+</div>
