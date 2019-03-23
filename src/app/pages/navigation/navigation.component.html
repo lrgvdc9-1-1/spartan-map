@@ -1,5 +1,5 @@
-<div style="width: 100%; height: 100%;" (window:resize)="onResize($event)" >
-  <div [ngStyle]="{'width': widthPane}" style="height: 100px; float: left;">
+<div data-role="navview" data-expanded="fs">
+  <div class="navview-pane">
 
 
       <div class="sidebar-header" style="background: transparent; background-image: url('assets/sb-bg.png')" >
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div [ngStyle]="{'width': widthContent}" style="float: left; height: 100%">
+  <div class="navview-content">
     <router-outlet></router-outlet>
      
   </div>

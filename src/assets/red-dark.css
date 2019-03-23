@@ -520,6 +520,7 @@ textarea.focused,
 .navview .navview-content {
   background-color: #212121;
   color: #ffffff;
+  height: 100%;
 }
 .notify {
   background-color: #252525;
