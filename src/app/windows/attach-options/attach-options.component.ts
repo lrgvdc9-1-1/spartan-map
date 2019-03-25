@@ -18,7 +18,7 @@ export class AttachOptionsComponent implements OnInit {
       left: "50%",
       bottom: "30px",
       width: "400px", 
-      height: "300px",
+      height: "330px",
       marginLeft: "-200px",
       marginTop: "-150px"
     }    
@@ -27,7 +27,7 @@ export class AttachOptionsComponent implements OnInit {
   getHeight() {
     this.visible = !this.visible;
     if(this.visible) {
-      this.style.height = "300px";
+      this.style.height = "330px";
     } else {
       this.style.height = "30px";
     }
