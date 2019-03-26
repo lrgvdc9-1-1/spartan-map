@@ -14,6 +14,7 @@ export class MapToolbarComponent implements OnInit {
   @Input() inbox: InboxComponent;
   @Input() esriMap: EsriComponent;
   @Output() openBookmark = new EventEmitter<any>();
+  @Output() openAttach = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
@@ -46,6 +47,10 @@ export class MapToolbarComponent implements OnInit {
 
   onOpenBookMark() {
     this.openBookmark.emit(true);
+  }
+
+  onOpenAttach() {
+    this.openAttach.emit(true);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input  } from '@angular/core';
+import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
 
 @Component({
@@ -10,7 +10,7 @@ export class AttachOptionsComponent implements OnInit {
   public style: any = {};
   visible: boolean = true;
   @Input() esriMap:  EsriComponent;
-
+  @Output() close = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
@@ -34,5 +34,10 @@ export class AttachOptionsComponent implements OnInit {
     } else {
       this.style.height = "30px";
     }
+  }
+
+
+  onClose() {
+    this.close.emit(false);
   }
 }

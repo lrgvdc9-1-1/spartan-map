@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   
   bookmark:boolean = false;
+  attach: boolean = false;
   constructor() { }
 
   ngOnInit() {
