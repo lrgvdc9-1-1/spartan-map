@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input  } from '@angular/core';
+import { EsriComponent } from 'src/app/map/esri/esri.component';
 
 @Component({
-  selector: 'app-attach-options',
+  selector: 'app-attach-options-window',
   templateUrl: './attach-options.component.html',
   styleUrls: ['./attach-options.component.css']
 })
 export class AttachOptionsComponent implements OnInit {
   public style: any = {};
   visible: boolean = true;
+  @Input() esriMap:  EsriComponent;
+
   constructor() { }
 
   ngOnInit() {

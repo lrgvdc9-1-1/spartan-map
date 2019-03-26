@@ -5,7 +5,7 @@ import { EsriComponent } from 'src/app/map/esri/esri.component';
 import { EsriService } from 'src/app/map/esri.service';
 
 @Component({
-  selector: 'app-map-bookmark',
+  selector: 'app-map-bookmark-window',
   templateUrl: './map-bookmark.component.html',
   styleUrls: ['./map-bookmark.component.css']
 })

@@ -4,7 +4,7 @@ import { EsriComponent } from 'src/app/map/esri/esri.component';
 
 
 @Component({
-  selector: 'app-map-toolbar',
+  selector: 'app-map-toolbar-window',
   templateUrl: './map-toolbar.component.html',
   styleUrls: ['./map-toolbar.component.css']
 })

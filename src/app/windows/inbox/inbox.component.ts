@@ -6,7 +6,7 @@ import { EsriService } from 'src/app/map/esri.service';
 import {ResizeEvent} from 'angular-resizable-element';
 
 @Component({
-  selector: 'app-inbox',
+  selector: 'app-inbox-window',
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.css']
 })
