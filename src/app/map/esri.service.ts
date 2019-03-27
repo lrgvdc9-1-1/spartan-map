@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { loadModules } from 'esri-loader';
+import { ATTOPT } from '../model/interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,8 +8,8 @@ export class EsriService {
 
   //This will contain all global variables for loading esri map
   vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub/VectorTileServer";
-  cityErrorURL: string = "https://gis.lrgvdc911.org/arcgis2/rest/services/Features/CityErrors/FeatureServer/1";
-  cityErrorAddURL: string = "https://gis.lrgvdc911.org/arcgis2/rest/services/Features/CityErrors/FeatureServer/0"
+  cityErrorURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Features/CityErrors/FeatureServer/1";
+  cityErrorAddURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Features/CityErrors/FeatureServer/0"
   loaded: boolean = false;
   map: any =  null;
   vector: any = null;
@@ -24,6 +25,10 @@ export class EsriService {
   esriSimpleLineSymbol: any = null;
   esriPictureMarkerSymbol: any = null;
   esriwebMercatorUtils:any =null;
+
+  ATTACH_OPTIONS: ATTOPT = {
+    point: 1, polyline: 2, polygon: 3
+  }
 
   constructor() { 
     this.loadModules();

@@ -78,6 +78,13 @@ export interface LAYER {
     editing?: boolean;
 }
 
+
+export interface ATTOPT {
+    point?: number;
+    polyline?: number;
+    polygon?: number;
+}
+
 //Classes 
 
 export class CUSER {

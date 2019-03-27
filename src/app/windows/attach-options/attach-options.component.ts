@@ -25,6 +25,13 @@ export class AttachOptionsComponent implements OnInit {
       marginLeft: "-200px",
       marginTop: "-150px"
     }    
+
+    //ON EVENT LISTENER
+    this.esriMap.onAttachEvent.subscribe((response) => {
+        console.log(response);
+        this.esriMap.setMapCursor("default");
+        this.esriMap.enableAttach = false;
+    });
   }
 
   getHeight() {
@@ -45,14 +52,11 @@ export class AttachOptionsComponent implements OnInit {
   drawMap(option:number) {
 
     //Always enable the map cursor...
+    //as well enable the attachment mode in map component..
+
     this.esriMap.setMapCursor("crosshair");
-
-    if(option == 1) {
-      
-    }else if(option == 2) {
-
-    }else if(option == 3) {
-
-    }
+    this.esriMap.enAttach();
+    this.esriMap.setDrawingOption(option); 
+   
   }
 }

@@ -13,11 +13,16 @@ export class EsriComponent implements OnInit {
 
   map: any = null;
   vector: any  =null;
+
   cityErrorsFeatures: any = null;
   cityErrorsAddress: any = null;
   selectionSymbol: any = null;
   mapExtentChange: any = null;
+
   public homeExtent: any = null;
+  enableAttach: boolean = false;
+  attachDrawing: number = 0;
+
   @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
 
 
@@ -42,10 +47,11 @@ export class EsriComponent implements OnInit {
    
   }
 
+  //Creates the map based on configurations...
   loadMap() {
     this.map = new this.service.map("esri-map", {slider: false, logo: false});
     this.vector  = new this.service.vector(this.service.vectorSubURL);
-    this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {outFields: ["*"]});
+    this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {id: "ALL_ERRORS", outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
     this.cityErrorsFeatures.setFeatureReduction({
       type: "cluster",
@@ -57,13 +63,19 @@ export class EsriComponent implements OnInit {
     // Events Capture from map..
     this.map.on("load", () => {
         this.homeExtent = this.map.extent;
-
-        //console.log(this.homeExtent);
     });
 
     // Map Change
+
+    this.map.on("click", () => {
+      if(this.enableAttach && this.attachDrawing == this.service.ATTACH_OPTIONS.point){
+        
+        this.onAttachEvent.emit("AM DONE");
+      }
+    });
   }
 
+ 
 
   //Zoom to Particular Extent if pnt provided will display selection graphic...
   zoomToExtent(extent, pnt:any = null) {
@@ -80,8 +92,28 @@ export class EsriComponent implements OnInit {
     this.map.graphics.clear();
   }
 
+  //Change the map cursor..
   setMapCursor(cursor:string) {
     this.map.setMapCursor(cursor);
+  }
+
+
+  //Set what option to draw on the map.
+
+  //Can be point, polyline, or polygon..
+  setDrawingOption(option: number) {
+    this.attachDrawing = option;
+  }
+
+  //Enable the attachment for clicking on map.
+  enAttach() {
+    
+    this.enableAttach = true;
+  }
+
+  //Disable the attachment for clicking on the map.
+  disAttach() {
+    this.enableAttach = false;
   }
 
 
