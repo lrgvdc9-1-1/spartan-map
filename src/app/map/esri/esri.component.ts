@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EsriService } from '../esri.service';
+import { arcgisToGeoJSON } from '@esri/arcgis-to-geojson-utils';
 
 declare var esri;
 
@@ -17,6 +18,9 @@ export class EsriComponent implements OnInit {
   selectionSymbol: any = null;
   mapExtentChange: any = null;
   public homeExtent: any = null;
+  @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
+
+
   constructor(public service: EsriService) { }
 
   ngOnInit() {
@@ -54,7 +58,7 @@ export class EsriComponent implements OnInit {
     this.map.on("load", () => {
         this.homeExtent = this.map.extent;
 
-        console.log(this.homeExtent);
+        //console.log(this.homeExtent);
     });
 
     // Map Change
@@ -71,8 +75,14 @@ export class EsriComponent implements OnInit {
     }
   }
 
+  //Clear the main graphics from map..
   clearMainGraphics() {
     this.map.graphics.clear();
   }
+
+  setMapCursor(cursor:string) {
+    this.map.setMapCursor(cursor);
+  }
+
 
 }

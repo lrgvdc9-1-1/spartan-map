@@ -38,6 +38,21 @@ export class AttachOptionsComponent implements OnInit {
 
 
   onClose() {
+    this.esriMap.setMapCursor("default");
     this.close.emit(false);
+  }
+
+  drawMap(option:number) {
+
+    //Always enable the map cursor...
+    this.esriMap.setMapCursor("crosshair");
+
+    if(option == 1) {
+      
+    }else if(option == 2) {
+
+    }else if(option == 3) {
+
+    }
   }
 }
