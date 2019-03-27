@@ -46,6 +46,8 @@ export class AttachOptionsComponent implements OnInit {
 
   onClose() {
     this.esriMap.setMapCursor("default");
+    this.esriMap.setDrawingOption(0);
+    this.esriMap.disAttach();
     this.close.emit(false);
   }
 
