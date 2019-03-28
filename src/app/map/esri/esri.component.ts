@@ -31,6 +31,7 @@ export class EsriComponent implements OnInit {
 
   //Toolbar...s
   toolbar: any = null;
+  toolbarSymbols: any = {"point" : null, "line" : null, "polygon" : ""};
 
   //Input and Ouput Events variables..
   @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
@@ -59,10 +60,12 @@ export class EsriComponent implements OnInit {
 
   //Creates the map based on configurations...
   loadMap() {
-
+    console.log(esri);
     //Create map instance..
     this.map = new this.service.map("esri-map", {slider: false, logo: false});
 
+    //Create symbols for toolbar..
+    this.toolbarSymbols.point = new esri.symbol.PictureMarkerSymbol("assets/PurpleShinyPin.png", 50, 50);
 
     //Load layers below..
 
@@ -135,6 +138,21 @@ export class EsriComponent implements OnInit {
   toolbarEvents() {
     this.toolbar.on("draw-end", (response) => {
         this.toolbar.deactivate();
+
+        //if(response.geometry.type == "POINT")
+        console.log(response.geometry.type);
+        this.clearMainGraphics();
+
+        //Add Symbology..
+        if(response.geometry.type == "point") {
+            console.log(response.geometry);
+            this.map.graphics.add(new this.service.esriGraphic(response.geometry, this.toolbarSymbols.point));
+        }
+
+        //Return information to the attachment component..
+        //We need to convert from 3857 to 4326
+        // also make it from esri json to geo json..
+        // add the crs property that it needs to save in the database...
         response.geometry = esri.geometry.webMercatorToGeographic(response.geometry);
         const geojson  = arcgisToGeoJSON(response.geometry);
         geojson['crs'] = {"type": "name", "properties": {"name": "epsg:4326"}};
