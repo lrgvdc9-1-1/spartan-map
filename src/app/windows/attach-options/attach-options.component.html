@@ -3,19 +3,19 @@
       <span class="icon mif-attachment"></span>
       <span class="title">Attach Documents</span>
       <div class="buttons">
-            <span *ngIf="visible" (click)="getHeight()" class="btn-min"></span>
-            <span *ngIf="!visible" (click)="getHeight()" class="btn-max"></span>
+            <!-- <span *ngIf="visible" (click)="getHeight()" class="btn-min"></span>
+            <span *ngIf="!visible" (click)="getHeight()" class="btn-max"></span> -->
           <span (click)="onClose()" class="btn-close"></span>
       </div>
   </div>
   <div *ngIf="visible"  class="window-content p-2">
-      <input type="file" data-role="file" data-mode="drop" multiple>
+      <input (change)="onChange($event)" type="file" data-role="file" data-mode="drop" multiple>
     <br>
       <div style="text-align: center;">
         <button *ngIf="!submitOn" (click)="drawMap(options.point)" [ngClass]="{'btnSelected': pointSel}" class="button outline bg-orange">Point</button>
         <button *ngIf="!submitOn" (click)="drawMap(options.polyline)" [ngClass]="{'btnSelected': polylineSel}" class="button outline bg-orange">Line</button>
         <button *ngIf="!submitOn" (click)="drawMap(options.polygon)" [ngClass]="{'btnSelected': polySel}" class="button outline bg-orange">Polygon</button>
-        <button *ngIf="submitOn" class="button outline bg-orange">Submit</button>
+        <button *ngIf="submitOn"  (click)="onAttach()" class="button outline bg-orange">Submit</button>
     </div>
     
   </div>

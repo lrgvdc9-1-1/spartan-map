@@ -40,7 +40,7 @@ export class EsriComponent implements OnInit {
 
   ngOnInit() {
 
-
+    
    var timeout = setInterval(() => {
       if(this.service.loaded) {
          this.loadMap();
@@ -59,10 +59,10 @@ export class EsriComponent implements OnInit {
 
   //Creates the map based on configurations...
   loadMap() {
+
+    //Create map instance..
     this.map = new this.service.map("esri-map", {slider: false, logo: false});
 
-
-    
 
     //Load layers below..
 
@@ -135,7 +135,10 @@ export class EsriComponent implements OnInit {
   toolbarEvents() {
     this.toolbar.on("draw-end", (response) => {
         this.toolbar.deactivate();
-        this.onAttachEvent.emit(response);
+        response.geometry = esri.geometry.webMercatorToGeographic(response.geometry);
+        const geojson  = arcgisToGeoJSON(response.geometry);
+        geojson['crs'] = {"type": "name", "properties": {"name": "epsg:4326"}};
+        this.onAttachEvent.emit(geojson)
     });
   }
 

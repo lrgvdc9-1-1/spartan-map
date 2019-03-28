@@ -8,7 +8,8 @@ export class ROUTES {
             iComment: "addressticket/insertComm",
             dBookmark: "gis/deleteBookmark/",
             sBookmark: "gis/saveBookmark",
-            gBookmark: "gis/getBookmarkUser/?id="
+            gBookmark: "gis/getBookmarkUser/?id=",
+            sAttachDoc: "gis/addAttach/"
       }
     }
 }
@@ -20,4 +21,5 @@ interface API_ROUTES {
     dBookmark?: string;
     sBookmark?: string;
     gBookmark?: string;
+    sAttachDoc?: string;
   }

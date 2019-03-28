@@ -37,8 +37,11 @@ export class EsriService {
 
   loadModules() {
     loadModules(["esri/Color", "esri/toolbars/draw", "esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
-    "esri/geometry/Point","esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
-    .then(([Color,Draw, SpatialReference, Map,Graphic,Extent, FeatureTable, FeatureLayer, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
+    "esri/geometry/Point", 
+    "esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
+    .then(([Color,Draw, SpatialReference, Map,Graphic,Extent, FeatureTable, 
+      FeatureLayer, VectorTileLayer,Circle, Point,
+      SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
   
       this.map = Map;
       this.esriDraw = Draw;
