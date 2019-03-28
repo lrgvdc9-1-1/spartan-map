@@ -1,5 +1,6 @@
 import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
+import { ATTOPT } from 'src/app/model/interface';
 
 @Component({
   selector: 'app-attach-options-window',
@@ -9,8 +10,16 @@ import { EsriComponent } from 'src/app/map/esri/esri.component';
 export class AttachOptionsComponent implements OnInit {
   public style: any = {};
   visible: boolean = true;
+  
+  pointSel: boolean = false;
+  polySel: boolean = false;
+  polylineSel: boolean = false;
+  submitOn: boolean = false;
   @Input() esriMap:  EsriComponent;
   @Output() close = new EventEmitter<any>();
+  options: ATTOPT = {
+    point: 1, polyline: 2, polygon: 3
+  }
   constructor() { }
 
   ngOnInit() {
@@ -30,7 +39,11 @@ export class AttachOptionsComponent implements OnInit {
     this.esriMap.onAttachEvent.subscribe((response) => {
         console.log(response);
         this.esriMap.setMapCursor("default");
-        this.esriMap.enableAttach = false;
+        this.polySel = false;
+        this.pointSel = false;
+        this.polylineSel = false;
+        this.submitOn = true;
+        
     });
   }
 
@@ -47,7 +60,7 @@ export class AttachOptionsComponent implements OnInit {
   onClose() {
     this.esriMap.setMapCursor("default");
     this.esriMap.setDrawingOption(0);
-    this.esriMap.disAttach();
+    
     this.close.emit(false);
   }
 
@@ -57,8 +70,23 @@ export class AttachOptionsComponent implements OnInit {
     //as well enable the attachment mode in map component..
 
     this.esriMap.setMapCursor("crosshair");
-    this.esriMap.enAttach();
+    
     this.esriMap.setDrawingOption(option); 
-   
+    
+    if(option == this.options.point) {
+        this.pointSel = true;
+        this.polySel = false;
+        this.polylineSel = false;
+    }else if(option == this.options.polyline) {
+        this.pointSel = false;
+        this.polySel = false;
+        this.polylineSel = true;
+
+    }else if(option == this.options.polygon) {
+        this.pointSel = false;
+        this.polySel = true;
+        this.polylineSel = false;
+    }
+
   }
 }

@@ -15,6 +15,7 @@ export class EsriService {
   vector: any = null;
   esriColor: any = null;
   esriCircle: any = null;
+  esriDraw: any   = null;
   esriExtent: any = null;
   esriFeatureTable: any = null;
   esriFeatureLayer: any =null;
@@ -35,11 +36,12 @@ export class EsriService {
   }
 
   loadModules() {
-    loadModules(["esri/Color","esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
+    loadModules(["esri/Color", "esri/toolbars/draw", "esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
     "esri/geometry/Point","esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
-    .then(([Color,SpatialReference, Map,Graphic,Extent, FeatureTable, FeatureLayer, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
-     
+    .then(([Color,Draw, SpatialReference, Map,Graphic,Extent, FeatureTable, FeatureLayer, VectorTileLayer,Circle, Point,SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
+  
       this.map = Map;
+      this.esriDraw = Draw;
       this.esriExtent = Extent;
       this.esriSpatialReference = SpatialReference;
       this.esriFeatureTable = FeatureTable;

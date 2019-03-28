@@ -12,9 +12,10 @@
       <input type="file" data-role="file" data-mode="drop" multiple>
     <br>
       <div style="text-align: center;">
-        <button (click)="drawMap(1)" class="button outline bg-orange">Point</button>
-        <button (click)="drawMap(2)" class="button outline bg-orange">Line</button>
-        <button (click)="drawMap(3)" class="button outline bg-orange">Polygon</button>
+        <button *ngIf="!submitOn" (click)="drawMap(options.point)" [ngClass]="{'btnSelected': pointSel}" class="button outline bg-orange">Point</button>
+        <button *ngIf="!submitOn" (click)="drawMap(options.polyline)" [ngClass]="{'btnSelected': polylineSel}" class="button outline bg-orange">Line</button>
+        <button *ngIf="!submitOn" (click)="drawMap(options.polygon)" [ngClass]="{'btnSelected': polySel}" class="button outline bg-orange">Polygon</button>
+        <button *ngIf="submitOn" class="button outline bg-orange">Submit</button>
     </div>
     
   </div>

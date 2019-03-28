@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EsriService } from '../esri.service';
 import { arcgisToGeoJSON } from '@esri/arcgis-to-geojson-utils';
 
+
+//We might used don't know yet...
 declare var esri;
 
 @Component({
@@ -12,19 +14,27 @@ declare var esri;
 export class EsriComponent implements OnInit {
 
   map: any = null;
-  vector: any  =null;
 
+  //Layers 
+  vector: any  =null;
   cityErrorsFeatures: any = null;
   cityErrorsAddress: any = null;
+  
+  //Symbols
   selectionSymbol: any = null;
-  mapExtentChange: any = null;
 
+  //Tracking Variables such as extent, and home extent...
+  mapExtentChange: any = null;
   public homeExtent: any = null;
   enableAttach: boolean = false;
   attachDrawing: number = 0;
 
-  @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
+  //Toolbar...s
+  toolbar: any = null;
 
+  //Input and Ouput Events variables..
+  @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
+  @Input() mapOptions: any = null;
 
   constructor(public service: EsriService) { }
 
@@ -50,6 +60,12 @@ export class EsriComponent implements OnInit {
   //Creates the map based on configurations...
   loadMap() {
     this.map = new this.service.map("esri-map", {slider: false, logo: false});
+
+
+    
+
+    //Load layers below..
+
     this.vector  = new this.service.vector(this.service.vectorSubURL);
     this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {id: "ALL_ERRORS", outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
@@ -57,22 +73,21 @@ export class EsriComponent implements OnInit {
       type: "cluster",
       clusterRadius: 50
     });
+
+    //Add Layers into the map...
     this.map.addLayer(this.vector);
     this.map.addLayer(this.cityErrorsFeatures); //Add City Errors To Share with entities..
 
-    // Events Capture from map..
+    // Events Capture from map load and extent-change....
     this.map.on("load", () => {
+        //Create toolbar once map is loaded.. needed...
+        this.toolbar = new this.service.esriDraw(this.map, {showTooltips: false});  
         this.homeExtent = this.map.extent;
+         //Setup Toolbar events...
+         this.toolbarEvents();
     });
 
-    // Map Change
-
-    this.map.on("click", () => {
-      if(this.enableAttach && this.attachDrawing == this.service.ATTACH_OPTIONS.point){
-        
-        this.onAttachEvent.emit("AM DONE");
-      }
-    });
+   
   }
 
  
@@ -98,22 +113,30 @@ export class EsriComponent implements OnInit {
   }
 
 
-  //Set what option to draw on the map.
-
+  
+  //Function to set Drawing Option..
   //Can be point, polyline, or polygon..
   setDrawingOption(option: number) {
     this.attachDrawing = option;
+    //Activate drawing...
+    if(option == this.service.ATTACH_OPTIONS.point) {
+       this.toolbar.activate(this.service.esriDraw.POINT)
+    }
+    else if(option == this.service.ATTACH_OPTIONS.polyline) {
+      this.toolbar.activate(this.service.esriDraw.POLYLINE);
+    }else if(option == this.service.ATTACH_OPTIONS.polygon) {
+      this.toolbar.activate(this.service.esriDraw.POLYGON);
+    }
+
   }
 
-  //Enable the attachment for clicking on map.
-  enAttach() {
-    
-    this.enableAttach = true;
-  }
 
-  //Disable the attachment for clicking on the map.
-  disAttach() {
-    this.enableAttach = false;
+  //toolbar events...
+  toolbarEvents() {
+    this.toolbar.on("draw-end", (response) => {
+        this.toolbar.deactivate();
+        this.onAttachEvent.emit(response);
+    });
   }
 
 
