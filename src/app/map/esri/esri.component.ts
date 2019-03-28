@@ -66,7 +66,8 @@ export class EsriComponent implements OnInit {
 
     //Create symbols for toolbar..
     this.toolbarSymbols.point = new esri.symbol.PictureMarkerSymbol("assets/PurpleShinyPin.png", 50, 50);
-
+    this.toolbarSymbols.line = new this.service.esriSimpleLineSymbol();
+    this.toolbarSymbols.line.setColor(new this.service.esriColor([169, 0, 230, 1]));
     //Load layers below..
 
     this.vector  = new this.service.vector(this.service.vectorSubURL);
@@ -147,6 +148,11 @@ export class EsriComponent implements OnInit {
         if(response.geometry.type == "point") {
             console.log(response.geometry);
             this.map.graphics.add(new this.service.esriGraphic(response.geometry, this.toolbarSymbols.point));
+        }
+        else if(response.geometry.type == "polyline") {
+           this.map.graphics.add(new this.service.esriGraphic(response.geometry, this.toolbarSymbols.line));
+        }else if(response.geometry.type == "polygon") {
+           //this.map.graphics.add();
         }
 
         //Return information to the attachment component..

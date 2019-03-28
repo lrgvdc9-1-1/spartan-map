@@ -9,14 +9,18 @@
       </div>
   </div>
   <div *ngIf="visible"  class="window-content p-2">
-      <input (change)="onChange($event)" type="file" data-role="file" data-mode="drop" multiple>
+      <input #files (change)="onChange($event)" type="file" data-role="file" data-mode="drop" multiple>
     <br>
+   
       <div style="text-align: center;">
         <button *ngIf="!submitOn" (click)="drawMap(options.point)" [ngClass]="{'btnSelected': pointSel}" class="button outline bg-orange">Point</button>
         <button *ngIf="!submitOn" (click)="drawMap(options.polyline)" [ngClass]="{'btnSelected': polylineSel}" class="button outline bg-orange">Line</button>
         <button *ngIf="!submitOn" (click)="drawMap(options.polygon)" [ngClass]="{'btnSelected': polySel}" class="button outline bg-orange">Polygon</button>
-        <button *ngIf="submitOn"  (click)="onAttach()" class="button outline bg-orange">Submit</button>
+        <button *ngIf="submitOn"  (click)="onAttach()" class="button outline bg-orange">Submit
+          <div *ngIf="loading" data-role="activity" data-type="metro" data-style="color"></div>
+        </button>
     </div>
+    <span *ngIf="message">{{msgError}}</span>
     
   </div>
 </div>

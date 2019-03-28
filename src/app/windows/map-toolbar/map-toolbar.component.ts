@@ -52,5 +52,9 @@ export class MapToolbarComponent implements OnInit {
   onOpenAttach() {
     this.openAttach.emit(true);
   }
-
+  onIdentify() {
+    console.log("I RAN");
+    this.esriMap.setMapCursor("url(assets/information.cur),auto");
+    //url(cursor1.png)
+  }
 }
