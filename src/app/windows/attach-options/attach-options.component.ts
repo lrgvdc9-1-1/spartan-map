@@ -44,7 +44,7 @@ export class AttachOptionsComponent implements OnInit, OnDestroy {
       left: "50%",
       bottom: "30px",
       width: "400px", 
-      height: "330px",
+      height: "350px",
       marginLeft: "-200px",
       marginTop: "-150px"
     }    
