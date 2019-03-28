@@ -26,6 +26,7 @@ import { FilterminePipe } from './model/filtermine.pipe';
 import { ConfirmComponent } from './windows/confirm/confirm.component';
 import { BasemapsListComponent } from './windows/basemaps-list/basemaps-list.component';
 import { AttachOptionsComponent } from './windows/attach-options/attach-options.component';
+import { IdentifyComponent } from './windows/identify/identify.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AttachOptionsComponent } from './windows/attach-options/attach-options.
     FilterminePipe,
     ConfirmComponent,
     BasemapsListComponent,
-    AttachOptionsComponent
+    AttachOptionsComponent,
+    IdentifyComponent
   ],
   imports: [
     BrowserModule,
