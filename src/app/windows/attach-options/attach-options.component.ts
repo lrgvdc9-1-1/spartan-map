@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './attach-options.component.html',
   styleUrls: ['./attach-options.component.css']
 })
-export class AttachOptionsComponent implements OnInit, OnDestroy {
+export class AttachOptionsComponent implements OnInit {
   public style: any = {};
   visible: boolean = true;
   
@@ -65,9 +65,7 @@ export class AttachOptionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.esriMap.onAttachEvent.unsubscribe();
-  }
+ 
 
   getHeight() {
     this.visible = !this.visible;
