@@ -28,6 +28,7 @@ import { BasemapsListComponent } from './windows/basemaps-list/basemaps-list.com
 import { AttachOptionsComponent } from './windows/attach-options/attach-options.component';
 import { IdentifyComponent } from './windows/identify/identify.component';
 import { RightClickMenuComponent } from './windows/right-click-menu/right-click-menu.component';
+import { FeatureTableComponent } from './windows/feature-table/feature-table.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { RightClickMenuComponent } from './windows/right-click-menu/right-click-
     BasemapsListComponent,
     AttachOptionsComponent,
     IdentifyComponent,
-    RightClickMenuComponent
+    RightClickMenuComponent,
+    FeatureTableComponent
   ],
   imports: [
     BrowserModule,

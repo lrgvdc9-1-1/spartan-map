@@ -14,14 +14,16 @@ export class RightClickMenuComponent implements OnInit, OnDestroy {
     bottom: "30px",
     top: "0", 
     left: "80px",
-    width: "120px", 
-    height: "200px",
+    width: "180px", 
+    height: "290px",
     display: "none",
     border: "1px solid #602643",
     boxShadow: "1px 1px 2px #602643",
     backgroundColor: "#201325"
   };
 
+  @Output() closeToobar = new EventEmitter<any>();
+  trackToolbar: boolean = true;
   constructor() { }
 
   ngOnInit() {
@@ -37,6 +39,13 @@ export class RightClickMenuComponent implements OnInit, OnDestroy {
   // To Destroy all the subscribe listeners ....
   ngOnDestroy() {
     this.esriMap.righClick.unsubscribe();
+  }
+
+  onCloseToolbar() {
+
+    this.trackToolbar = !this.trackToolbar
+    this.closeToobar.emit(this.trackToolbar);
+    this.onClose();
   }
 
   onClose() {

@@ -6,7 +6,7 @@
   }
 
   .context-menu__item {
-    text-align: center;
+    padding: 8px;
     display: block;
     
     margin-bottom: 4px;
