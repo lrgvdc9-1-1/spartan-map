@@ -37,6 +37,9 @@ export class EsriComponent implements OnInit {
   @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
   @Input() mapOptions: any = null;
 
+  @Output() righClick = new EventEmitter<any>();
+
+
   constructor(public service: EsriService) { }
 
   ngOnInit() {
@@ -99,6 +102,11 @@ export class EsriComponent implements OnInit {
         this.homeExtent = this.map.extent;
          //Setup Toolbar events...
          this.toolbarEvents();
+    });
+
+    //GET LEFT AND RIGHT CLICKS...
+    this.map.on("click", (response) => {
+        console.log(response);
     });
 
    
@@ -170,6 +178,12 @@ export class EsriComponent implements OnInit {
         geojson['crs'] = {"type": "name", "properties": {"name": "epsg:4326"}};
         this.onAttachEvent.emit(geojson)
     });
+  }
+
+  onRightClick(event) {
+  
+    this.righClick.emit(event);
+    return false;
   }
 
 

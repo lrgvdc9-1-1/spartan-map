@@ -27,6 +27,7 @@ import { ConfirmComponent } from './windows/confirm/confirm.component';
 import { BasemapsListComponent } from './windows/basemaps-list/basemaps-list.component';
 import { AttachOptionsComponent } from './windows/attach-options/attach-options.component';
 import { IdentifyComponent } from './windows/identify/identify.component';
+import { RightClickMenuComponent } from './windows/right-click-menu/right-click-menu.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { IdentifyComponent } from './windows/identify/identify.component';
     ConfirmComponent,
     BasemapsListComponent,
     AttachOptionsComponent,
-    IdentifyComponent
+    IdentifyComponent,
+    RightClickMenuComponent
   ],
   imports: [
     BrowserModule,
