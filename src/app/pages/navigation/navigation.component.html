@@ -1,5 +1,5 @@
-<div data-role="navview" data-expanded="fs">
-  <div class="navview-pane">
+<div data-role="navview"  data-expanded="fs">
+  <div  class="navview-pane">
 
 
       <div class="sidebar-header" style="background: transparent; background-image: url('assets/sb-bg.png')" >
@@ -12,6 +12,21 @@
         <span *ngIf="displayProfile" class="title">{{configs.selfuser.getFullName()}}</span>
         <span *ngIf="displayProfile" class="subtitle">{{configs.selfuser.getOrga()}}</span>
     </div>
+
+      <div class="suggest-box">
+        <div class="input">
+            <input placeholder="Search Map" type="text"  data-search-button="true">
+            <div class="button-group">
+              <button class="button input-search-button" tabindex="-1">
+                <span class="default-icon-search"></span>
+              </button>
+            </div>
+        </div>
+       
+        <button (click)="onCSS()" class="holder">
+            <span style="color: #f53e99" class="mif-search"></span>
+        </button>
+      </div>
   </div>
 
   <div class="navview-content">
