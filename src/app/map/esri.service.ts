@@ -13,6 +13,7 @@ export class EsriService {
   loaded: boolean = false;
   map: any =  null;
   vector: any = null;
+  esrigeometryEngine: any = null;
   esriColor: any = null;
   esriCircle: any = null;
   esriDraw: any   = null;
@@ -37,13 +38,14 @@ export class EsriService {
 
   loadModules() {
     loadModules(["esri/Color", "esri/toolbars/draw", "esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
-    "esri/geometry/Point", 
+    "esri/geometry/Point", "esri/geometry/geometryEngine",
     "esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
     .then(([Color,Draw, SpatialReference, Map,Graphic,Extent, FeatureTable, 
-      FeatureLayer, VectorTileLayer,Circle, Point,
+      FeatureLayer, VectorTileLayer,Circle, Point,geometryEngine,
       SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
   
       this.map = Map;
+      this.esrigeometryEngine = geometryEngine;
       this.esriDraw = Draw;
       this.esriExtent = Extent;
       this.esriSpatialReference = SpatialReference;

@@ -15,6 +15,7 @@ export class MapToolbarComponent implements OnInit {
   @Input() esriMap: EsriComponent;
   @Output() openBookmark = new EventEmitter<any>();
   @Output() openAttach = new EventEmitter<any>();
+  @Output() openIdentify = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
@@ -53,8 +54,10 @@ export class MapToolbarComponent implements OnInit {
     this.openAttach.emit(true);
   }
   onIdentify() {
-    console.log("I RAN");
-    this.esriMap.setMapCursor("url(assets/information.cur),auto");
+    
+    this.openIdentify.emit(true);
+    this.esriMap.setMapCursor("pointer")//"url(assets/information.cur),auto");
+    this.esriMap.setIdentifyEnable(true);
     //url(cursor1.png)
   }
 }

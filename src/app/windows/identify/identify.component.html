@@ -1,3 +1,16 @@
-<p>
-  identify works!
-</p>
+<div class="window" cdkDrag [ngStyle]="style">
+  <div class="window-caption bg-pink">
+      <span class="icon mif-info"></span>
+      <span class="title">Identify</span>
+      <div class="buttons">
+            <!-- <span *ngIf="visible" (click)="getHeight()" class="btn-min"></span>
+            <span *ngIf="!visible" (click)="getHeight()" class="btn-max"></span> -->
+          <span (click)="onClose()" class="btn-close"></span>
+      </div>
+  </div>
+  <div  class="window-content p-2">
+    <p>Buffer Meters - (Press enter to change)</p>
+    <input (keydown.enter)="changeBuffer()" type="number" [(ngModel)]="buffer">
+    
+  </div>
+</div>

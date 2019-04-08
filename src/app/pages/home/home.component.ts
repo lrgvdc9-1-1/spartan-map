@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
   bookmark:boolean = false;
   attach: boolean = false;
   toolbar: boolean = true;
+  identify: boolean = false;
   constructor() { }
 
   ngOnInit() {

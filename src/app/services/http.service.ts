@@ -45,6 +45,11 @@ export class HttpService {
     return this.httpClient.post<any>(this.url + this.routes.api.sAttachDoc, obj);
   }
 
+
+  getAttachDOCS(obj) :Observable<any> {
+    return this.httpClient.post<any>(this.url + this.routes.api.gAttachDoc, obj);
+  }
+
 }
 
 

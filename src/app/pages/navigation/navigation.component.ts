@@ -4,10 +4,8 @@ import { ConfigsService } from 'src/app/services/configs.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css'],
-  host: {
-    '(window:resize)': 'onTest($event)'
-  }
+  styleUrls: ['./navigation.component.css']
+ 
 })
 export class NavigationComponent implements OnInit {
   widthPane: string = "48px";
@@ -42,12 +40,5 @@ export class NavigationComponent implements OnInit {
       console.log(this.widthContent);
   }
 
-  test(event) {
-    console.log("HELLo");
-    console.log(event);
-  }
-
-  onTest(event) {
-    console.log("HEY")
-  }
+ 
 }

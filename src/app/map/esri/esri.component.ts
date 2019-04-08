@@ -22,12 +22,14 @@ export class EsriComponent implements OnInit {
   
   //Symbols
   selectionSymbol: any = null;
-
-  //Tracking Variables such as extent, and home extent...
+  buffSymbol:any = null;
+  pointSymbol:any = null; //Tracking Variables such as extent, and home extent...
   mapExtentChange: any = null;
   public homeExtent: any = null;
   enableAttach: boolean = false;
+  enableIdentify: boolean = false;
   attachDrawing: number = 0;
+  public buffRadius: number = 20; //DEFAULT BUFF IS 20 meters
 
   //Toolbar...s
   toolbar: any = null;
@@ -35,6 +37,7 @@ export class EsriComponent implements OnInit {
 
   //Input and Ouput Events variables..
   @Output() onAttachEvent = new EventEmitter<any>(); //When Attach is done..
+  @Output() onIdentifyEvent = new EventEmitter<any>(); //When click in map is doen.
   @Input() mapOptions: any = null;
 
   @Output() righClick = new EventEmitter<any>();
@@ -79,6 +82,15 @@ export class EsriComponent implements OnInit {
     this.toolbarSymbols.polygon.setOutline(line);
     this.toolbarSymbols.polygon.setColor(new this.service.esriColor([255, 0, 197, 0.25]));
 
+
+    this.buffSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+       new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_LONGDASHDOT, 
+        new esri.Color([255,128,0,1]), 3), new esri.Color([255,128,0,0.15]));
+
+    this.pointSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10, 
+      new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new esri.Color([0,255,0, 0.3]), 10), 
+      new esri.Color([0,255,0,1]));
+  
     
     
     //Load layers below..
@@ -106,7 +118,23 @@ export class EsriComponent implements OnInit {
 
     //GET LEFT AND RIGHT CLICKS...
     this.map.on("click", (response) => {
-        console.log(response);
+        //console.log(response);
+
+        if(this.enableIdentify) {
+            //console.log(response);
+            this.map.graphics.clear();
+
+            //Turn off enable Identify..
+            this.enableIdentify = false;
+
+            this.resetMapCursor();
+            let buff = esri.geometry.Circle(response.mapPoint, {"geodesic": true, "radius": this.buffRadius});
+            
+            this.map.graphics.add(new this.service.esriGraphic(response.mapPoint, this.pointSymbol));
+            this.map.graphics.add(new this.service.esriGraphic(buff, this.buffSymbol));
+            let mapPoint = esri.geometry.webMercatorToGeographic(response.mapPoint);
+            this.onIdentifyEvent.emit({"pntCenter" : mapPoint, "buff" : buff});
+        }
     });
 
    
@@ -129,9 +157,18 @@ export class EsriComponent implements OnInit {
     this.map.graphics.clear();
   }
 
+  //GET ENABLE IDENTIFY TOOL
+  getIdentify():boolean {
+    return this.enableIdentify;
+  }
+
   //Change the map cursor..
   setMapCursor(cursor:string) {
     this.map.setMapCursor(cursor);
+  }
+
+  resetMapCursor() {
+    this.map.setMapCursor("default");
   }
 
 
@@ -150,6 +187,16 @@ export class EsriComponent implements OnInit {
       this.toolbar.activate(this.service.esriDraw.POLYGON);
     }
 
+  }
+
+
+  setIdentifyEnable(choice) {
+    this.enableIdentify = choice;
+  }
+
+
+  setBufferRadius(buff:number) {
+    this.buffRadius = buff;
   }
 
 

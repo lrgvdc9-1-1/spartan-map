@@ -9,7 +9,8 @@ export class ROUTES {
             dBookmark: "gis/deleteBookmark/",
             sBookmark: "gis/saveBookmark",
             gBookmark: "gis/getBookmarkUser/?id=",
-            sAttachDoc: "gis/addAttach/"
+            sAttachDoc: "gis/addAttach/",
+            gAttachDoc: "gis/getAttachDOCS/"
       }
     }
 }
@@ -22,4 +23,5 @@ interface API_ROUTES {
     sBookmark?: string;
     gBookmark?: string;
     sAttachDoc?: string;
+    gAttachDoc?: string;
   }
