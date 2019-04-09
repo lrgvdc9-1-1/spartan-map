@@ -1,0 +1,27 @@
+<div style="background: white; height: 202px;" class="container swiper-slide">
+  <div style="height: 150px;overflow: auto;" class="container">
+    <h3>
+      Attachment ID: {{attach_id}}
+    </h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th >File Name</th>
+            <th ></th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let name of files">
+            <td>{{name}}</td>
+           <td>
+              <button style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
+           </td>
+        </tr>
+
+        </tbody>
+    </table>
+    
+  </div>
+  <button style="width: 100%; margin-bottom: 0;" class="button">ZOOM</button>
+</div>

@@ -10,7 +10,35 @@
   </div>
   <div  class="window-content p-2">
     <p>Buffer Meters - (Press enter to change)</p>
-    <input (keydown.enter)="changeBuffer()" type="number" [(ngModel)]="buffer">
-    
+    <div class="input">
+        <input (keydown.enter)="changeBuffer()" type="number" [(ngModel)]="buffer">
+        <div class="button-group">
+            <button (click)="onReset()" class="button" type="button">
+              <span class="default-icon-cross"></span>
+            </button>
+        </div>
+      </div>
+   
+    <div>
+      <br>
+      <div style="text-align: center;">
+        <button [ngClass]="{'btnSelected': pointSel}" class="button outline bg-pink">
+          DOCS
+          <span class="badge">{{docSize}}</span></button>
+        <button [ngClass]="{'btnSelected': polylineSel}" class="button outline bg-pink">
+          TICKETS
+          <span class="badge">0</span>
+        </button>
+        <button [ngClass]="{'btnSelected': polySel}" class="button outline bg-pink">
+          OTHER
+          <span class="badge">0</span>
+        </button>
+    </div>
+    <br>
+       <swiper [config]="config" class="swiper-container">
+        <app-test-window *ngFor="let item of attachments" [files]="item.file_info.files" [items]="item" [attach_id]="item.attach_id"></app-test-window>
+       </swiper>
+      
+    </div>
   </div>
 </div>

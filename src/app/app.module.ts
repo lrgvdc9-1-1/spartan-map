@@ -4,6 +4,10 @@ import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from  '@angular/common/http';
 import { ResizableModule } from 'angular-resizable-element';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SwiperModule, SwiperConfigInterface,
+  SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EsriComponent } from './map/esri/esri.component';
@@ -29,7 +33,17 @@ import { AttachOptionsComponent } from './windows/attach-options/attach-options.
 import { IdentifyComponent } from './windows/identify/identify.component';
 import { RightClickMenuComponent } from './windows/right-click-menu/right-click-menu.component';
 import { FeatureTableComponent } from './windows/feature-table/feature-table.component';
+import { TestComponent } from './windows/test/test.component';
 
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  observer: true,
+  direction: 'horizontal',
+  threshold: 50,
+  spaceBetween: 5,
+  slidesPerView: 1,
+  centeredSlides: true
+};
 
 @NgModule({
   declarations: [
@@ -56,10 +70,12 @@ import { FeatureTableComponent } from './windows/feature-table/feature-table.com
     AttachOptionsComponent,
     IdentifyComponent,
     RightClickMenuComponent,
-    FeatureTableComponent
+    FeatureTableComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
+    SwiperModule,
     DragDropModule,
     FormsModule,
     HttpClientModule,
@@ -67,7 +83,10 @@ import { FeatureTableComponent } from './windows/feature-table/feature-table.com
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

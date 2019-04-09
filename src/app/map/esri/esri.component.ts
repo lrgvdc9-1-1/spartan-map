@@ -129,7 +129,8 @@ export class EsriComponent implements OnInit {
 
             this.resetMapCursor();
             let buff = esri.geometry.Circle(response.mapPoint, {"geodesic": true, "radius": this.buffRadius});
-            
+            this.zoomToExtent(buff.getExtent());
+
             this.map.graphics.add(new this.service.esriGraphic(response.mapPoint, this.pointSymbol));
             this.map.graphics.add(new this.service.esriGraphic(buff, this.buffSymbol));
             let mapPoint = esri.geometry.webMercatorToGeographic(response.mapPoint);
