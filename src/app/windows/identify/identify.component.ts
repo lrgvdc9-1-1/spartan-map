@@ -90,6 +90,8 @@ export class IdentifyComponent implements OnInit {
     this.close.emit(false);
   }
 
+
+  //Function to reset the identify action...
   onReset() {
    
     if(!this.esriMap.getIdentify()) {
@@ -121,5 +123,7 @@ export class IdentifyComponent implements OnInit {
     this.esriMap.setBufferRadius(this.buffer);
     console.log(this.buffer);
   }
+
+ 
 
 }

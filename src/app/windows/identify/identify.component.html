@@ -22,21 +22,21 @@
     <div>
       <br>
       <div style="text-align: center;">
-        <button [ngClass]="{'btnSelected': pointSel}" class="button outline bg-pink">
+        <button [ngClass]="{'btnSelected': docsSel}" class="button outline bg-pink">
           DOCS
           <span class="badge">{{docSize}}</span></button>
-        <button [ngClass]="{'btnSelected': polylineSel}" class="button outline bg-pink">
+        <button [ngClass]="{'btnSelected': ticketsSel}" class="button outline bg-pink">
           TICKETS
-          <span class="badge">0</span>
+          <span class="badge">{{ticketSize}}</span>
         </button>
-        <button [ngClass]="{'btnSelected': polySel}" class="button outline bg-pink">
+        <button [ngClass]="{'btnSelected': otherSel}" class="button outline bg-pink">
           OTHER
-          <span class="badge">0</span>
+          <span class="badge">{{otherSize}}</span>
         </button>
     </div>
     <br>
        <swiper [config]="config" class="swiper-container">
-        <app-test-window *ngFor="let item of attachments" [files]="item.file_info.files" [items]="item" [attach_id]="item.attach_id"></app-test-window>
+        <app-docs [esriMap]="esriMap" *ngFor="let item of attachments" [files]="item.file_info.files" [items]="item" [attach_id]="item.attach_id"></app-docs>
        </swiper>
       
     </div>

@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
-import { NullTemplateVisitor } from '@angular/compiler';
 
 @Component({
-  selector: 'app-test-window',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-docs',
+  templateUrl: './docs.component.html',
+  styleUrls: ['./docs.component.css']
 })
-export class TestComponent implements OnInit {
+export class DocsComponent implements OnInit {
+
   @Input() attach_id: number = 0;
   @Input() items: any = null;
   @Input() files: any = [];
@@ -19,8 +19,9 @@ export class TestComponent implements OnInit {
 
 
   onZoom() {
-    console.log(this.items);
+   
     this.esriMap.clearMainGraphics();
     this.esriMap.setGraphic(this.items.geojson);
   }
+
 }

@@ -34,6 +34,7 @@ import { IdentifyComponent } from './windows/identify/identify.component';
 import { RightClickMenuComponent } from './windows/right-click-menu/right-click-menu.component';
 import { FeatureTableComponent } from './windows/feature-table/feature-table.component';
 import { TestComponent } from './windows/test/test.component';
+import { DocsComponent } from './previews/docs/docs.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -71,7 +72,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     IdentifyComponent,
     RightClickMenuComponent,
     FeatureTableComponent,
-    TestComponent
+    TestComponent,
+    DocsComponent
   ],
   imports: [
     BrowserModule,

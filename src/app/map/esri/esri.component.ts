@@ -200,6 +200,27 @@ export class EsriComponent implements OnInit {
     this.buffRadius = buff;
   }
 
+  //Set Graphic..
+  setGraphic(geometry, symbol: any = null) {
+
+    if(symbol){
+      this.map.graphics.add(new this.service.esriGraphic(geometry, symbol));
+    }else {
+      console.log(geometry);
+      if(geometry.type == "polyline") {
+        this.map.graphics.add(new this.service.esriGraphic(geometry, this.buffSymbol));
+      }else if(geometry.type == "point") {
+        this.map.graphics.add(new this.service.esriGraphic(geometry, this.pointSymbol));
+      }else if(geometry.type == "polygon") {
+        this.map.graphics.add(new this.service.esriGraphic(geometry, this.buffSymbol));
+      }
+      
+    }
+
+    
+   
+  }
+
 
   //toolbar events...
   toolbarEvents() {

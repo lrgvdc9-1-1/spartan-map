@@ -11,10 +11,11 @@ import {ResizeEvent} from 'angular-resizable-element';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
+  @Input() esriMap: EsriComponent;
   public style: object = {};
   info: string = "This is a hinted button";
-  rotate: boolean = false;
-  @Input() esriMap: EsriComponent;
+  rotate: boolean = true;
+  
   inbox: Array<TICKETiNBOX> = [];
   inboxSelected: TICKETiNBOX = null;
   constructor(private service: HttpService, private esriService: EsriService) { }
