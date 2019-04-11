@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocsComponent } from './docs.component';
+import { DocsWindowComponent } from './docs-window.component';
 
-describe('DocsComponent', () => {
-  let component: DocsComponent;
-  let fixture: ComponentFixture<DocsComponent>;
+describe('DocsWindowComponent', () => {
+  let component: DocsWindowComponent;
+  let fixture: ComponentFixture<DocsWindowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocsComponent ]
+      declarations: [ DocsWindowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocsComponent);
+    fixture = TestBed.createComponent(DocsWindowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -106,7 +106,11 @@ export class EsriComponent implements OnInit {
     //Add Layers into the map...
     this.map.addLayer(this.vector);
     this.map.addLayer(this.cityErrorsFeatures); //Add City Errors To Share with entities..
+    //this.map.addLayer(new this.service.esriFeatureLayer("https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/0", 
+    //  {id:"wcad",mode: this.service.esriFeatureLayer.MODE_ONDEMAND, webglEnabled: true, showLabels: false, outFields: ["*"]}
+    //));
 
+    
     // Events Capture from map load and extent-change....
     this.map.on("load", () => {
         //Create toolbar once map is loaded.. needed...

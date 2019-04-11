@@ -3,6 +3,8 @@ export class ROUTES {
  
     constructor() {
       this.api = {
+            MAIN: "https://gis.lrgvdc911.org/DOCS/",
+            OFFICE: "https://view.officeapps.live.com/op/view.aspx?src=",
             inbox: "addressticket/getInbox3",
             gComments: "addressticket/getComments/?id=",
             iComment: "addressticket/insertComm",
@@ -24,4 +26,6 @@ interface API_ROUTES {
     gBookmark?: string;
     sAttachDoc?: string;
     gAttachDoc?: string;
+    MAIN?: string;
+    OFFICE?: string;
   }

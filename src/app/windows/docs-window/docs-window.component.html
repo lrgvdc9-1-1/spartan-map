@@ -1,0 +1,21 @@
+<div class="window" cdkDrag [ngStyle]="style">
+  <div class="window-caption bg-pink">
+      <span class="icon mif-file-empty"></span>
+      <span class="title">View Document</span>
+      <div class="buttons">
+            <!-- <span *ngIf="visible" (click)="getHeight()" class="btn-min"></span>
+            <span *ngIf="!visible" (click)="getHeight()" class="btn-max"></span> -->
+          <span (click)="onClose()" class="btn-close"></span>
+      </div>
+  </div>
+  <div class="window-content">
+        <iframe [src]="website | safe"
+        width="100%" height="100%" frameborder="0"
+        allowfullscreen >
+    <p> <a href="https://developer.mozilla.org/en-US/docs/Glossary">
+    Fallback link for browsers that don't support iframes
+    </a> </p>
+    </iframe>
+    
+  </div>
+</div>

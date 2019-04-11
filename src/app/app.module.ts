@@ -35,7 +35,8 @@ import { RightClickMenuComponent } from './windows/right-click-menu/right-click-
 import { FeatureTableComponent } from './windows/feature-table/feature-table.component';
 import { TestComponent } from './windows/test/test.component';
 import { DocsComponent } from './previews/docs/docs.component';
-
+import {DocsWindowComponent} from './windows/docs-window/docs-window.component';
+import { SafePipe } from './safe.pipe';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -73,7 +74,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RightClickMenuComponent,
     FeatureTableComponent,
     TestComponent,
-    DocsComponent
+    DocsComponent,
+    DocsWindowComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

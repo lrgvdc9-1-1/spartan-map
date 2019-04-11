@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
   attach: boolean = false;
   toolbar: boolean = true;
   identify: boolean = false;
+  docView: boolean = false;
+  url:string = ""
   constructor() { }
 
   ngOnInit() {
@@ -18,6 +20,18 @@ export class HomeComponent implements OnInit {
 
   onBookMarkClose(value) {
     this.bookmark = value;
+
+  }
+
+
+  openDocsWindow(event) {
+    this.docView = event.display;
+   if(!event.download) {
+    this.url = event.website;
+   }else { //Lets Download
+
+   }
+  
 
   }
 

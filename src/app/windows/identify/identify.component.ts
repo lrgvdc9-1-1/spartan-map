@@ -4,6 +4,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { geojsonToArcGIS  } from '@esri/arcgis-to-geojson-utils';
 
 import {  SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import { DocsWindowComponent } from '../docs-window/docs-window.component';
 declare var esri;
 
 @Component({
@@ -29,9 +30,9 @@ export class IdentifyComponent implements OnInit {
   
   
   @Input() esriMap: EsriComponent;
-  
+  @Input() docView: DocsWindowComponent; 
   @Output() close = new EventEmitter<boolean>();
-  
+  @Output() openDoc = new EventEmitter<boolean>();
   
   attachments = null;
   docSize: number = 0;
@@ -75,7 +76,7 @@ export class IdentifyComponent implements OnInit {
                 });
                 this.attachments = res['msg'];
                 this.docSize = this.attachments.length;
-               console.log(this.attachments);
+               //console.log(this.attachments);
            }
         });
 
@@ -121,7 +122,11 @@ export class IdentifyComponent implements OnInit {
     }
   
     this.esriMap.setBufferRadius(this.buffer);
-    console.log(this.buffer);
+    //console.log(this.buffer);
+  }
+
+  ondoc(event) {
+    this.openDoc.emit(event);
   }
 
  

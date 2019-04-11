@@ -1,3 +1,4 @@
+<app-confirm (action)="onConfirm($event)" [display]="show" message="You want to delete this document?" btnAccept="Confirm" btnDisagree="Decline"></app-confirm>
 <div style="background: white; height: 202px;" class="container swiper-slide">
   <div style="height: 150px;overflow: auto;" class="container">
     <h3>
@@ -13,9 +14,9 @@
         </thead>
         <tbody>
         <tr *ngFor="let name of files">
-            <td>{{name}}</td>
+            <td class="link"><a (click)="onDocView(name)">{{name}}</a></td>
            <td>
-              <button style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
+              <button (click)="onAsk()" style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
            </td>
         </tr>
 
