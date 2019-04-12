@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
-import { DocsWindowComponent } from 'src/app/windows/docs-window/docs-window.component';
 import { ROUTES } from 'src/app/model/api-routes';
+
 
 
 @Component({
@@ -19,6 +19,7 @@ export class DocsComponent implements OnInit {
   show: boolean = false;
   bin: boolean = false;
   holdIndex: number = -1;
+  holdName: string = "";
   route: ROUTES = new ROUTES();
   constructor() { }
 
@@ -60,8 +61,9 @@ export class DocsComponent implements OnInit {
 
   }
 
-  onAsk(index) {
+  onAsk(index, fname) {
       this.holdIndex = index;
+      this.holdName = fname;
       this.show = true;
   }
 
@@ -69,9 +71,14 @@ export class DocsComponent implements OnInit {
    
     if(event) {
       
+      
       this.files.splice(this.holdIndex,1);
       this.show = false;
-      
+
+      //Send http request for the delete of the file and update the database..
+      console.log(this.files.length);
+      console.log(this.holdName);
+      console.log(this.items);
     }else {
       this.show = event;
     }

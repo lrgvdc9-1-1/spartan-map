@@ -16,7 +16,7 @@
         <tr *ngFor="let name of files; index as i">
             <td class="link"><a (click)="onDocView(name)">{{name}}</a></td>
            <td>
-              <button (click)="onAsk(i)" style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
+              <button (click)="onAsk(i, name)" style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
            </td>
         </tr>
 
