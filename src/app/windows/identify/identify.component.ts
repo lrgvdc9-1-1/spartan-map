@@ -46,13 +46,11 @@ export class IdentifyComponent implements OnInit {
     //Handles the style window...
     this.style = {
       position: "absolute", zIndex: 2,
-      top: "50%", 
-      left: "50%",
+      top: "0", 
+      right: "0",
       bottom: "30px",
-      width: "440px", 
-      height: "400px",
-      marginLeft: "-220px",
-      marginTop: "-200px"
+      width: "30%", 
+      height: "60%"
     } 
     
     //Communicates with esri  map events...

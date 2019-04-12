@@ -13,10 +13,12 @@ export class DocsComponent implements OnInit {
 
   @Input() attach_id: number = 0;
   @Input() items: any = null;
-  @Input() files: any = [];
+  @Input() files: Array<string> = [];
   @Input() esriMap: EsriComponent = null;
   @Output() openDoc = new EventEmitter<any>();
   show: boolean = false;
+  bin: boolean = false;
+  holdIndex: number = -1;
   route: ROUTES = new ROUTES();
   constructor() { }
 
@@ -25,7 +27,7 @@ export class DocsComponent implements OnInit {
 
 
   onZoom() {
-   
+    this.bin = true;
     this.esriMap.clearMainGraphics();
     this.esriMap.setGraphic(this.items.geojson);
   }
@@ -58,16 +60,26 @@ export class DocsComponent implements OnInit {
 
   }
 
-  onAsk() {
+  onAsk(index) {
+      this.holdIndex = index;
       this.show = true;
   }
 
   onConfirm(event) {
+   
     if(event) {
-
+      
+      this.files.splice(this.holdIndex,1);
+      this.show = false;
+      
     }else {
       this.show = event;
     }
   } 
+
+  onClear() {
+     this.esriMap.clearMainGraphics();
+     this.bin = false;
+  }
 
 }

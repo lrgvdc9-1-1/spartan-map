@@ -21,7 +21,7 @@ export class DocsWindowComponent implements OnInit {
       top: "0", 
       left: "0",
       bottom: "30px",
-      width: "80%", 
+      width: "70%", 
       height: "90%"
     }   
   }

@@ -1,6 +1,6 @@
 <app-confirm (action)="onConfirm($event)" [display]="show" message="You want to delete this document?" btnAccept="Confirm" btnDisagree="Decline"></app-confirm>
-<div style="background: white; height: 202px;" class="container swiper-slide">
-  <div style="height: 150px;overflow: auto;" class="container">
+<div style="background: white; height: 310px;" class="container swiper-slide">
+  <div style="height: 233px;overflow: auto;" class="container">
     <h3>
       Attachment ID: {{attach_id}}
     </h3>
@@ -13,10 +13,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let name of files">
+        <tr *ngFor="let name of files; index as i">
             <td class="link"><a (click)="onDocView(name)">{{name}}</a></td>
            <td>
-              <button (click)="onAsk()" style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
+              <button (click)="onAsk(i)" style="margin-left: 120px" class="button alert"><span class="mif-bin"></span></button>
            </td>
         </tr>
 
@@ -24,5 +24,10 @@
     </table>
     
   </div>
-  <button (click)="onZoom()" style="width: 100%; margin-bottom: 0;" class="button">ZOOM</button>
+  <button (click)="onZoom()" style="width: 100%; margin-bottom: 0;" class="button">
+    <span class="mif-display"></span>
+  </button>
+  <button *ngIf="bin" (click)="onClear()" style="width: 100%; margin-bottom: 0;" class="button">
+    <span class="mif-bin"></span>
+  </button>
 </div>
