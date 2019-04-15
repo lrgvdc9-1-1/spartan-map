@@ -12,7 +12,9 @@ export class ROUTES {
             sBookmark: "gis/saveBookmark",
             gBookmark: "gis/getBookmarkUser/?id=",
             sAttachDoc: "gis/addAttach/",
-            gAttachDoc: "gis/getAttachDOCS/"
+            gAttachDoc: "gis/getAttachDOCS/",
+            dAllAttachDocs: "gis/delAllDOCS/",
+            rAttachDocs: "gis/removeAttachDOCS/"
       }
     }
 }
@@ -26,6 +28,8 @@ interface API_ROUTES {
     gBookmark?: string;
     sAttachDoc?: string;
     gAttachDoc?: string;
+    dAllAttachDocs?: string;
+    rAttachDocs?: string;
     MAIN?: string;
     OFFICE?: string;
   }

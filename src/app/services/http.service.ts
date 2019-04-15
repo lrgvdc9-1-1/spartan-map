@@ -50,6 +50,14 @@ export class HttpService {
     return this.httpClient.post<any>(this.url + this.routes.api.gAttachDoc, obj);
   }
 
+  removeAllAttachDocs(obj):Observable<any> {
+    return this.httpClient.post<any>(this.url + this.routes.api.dAllAttachDocs, obj);
+  }
+
+  removeSingleAttachDocs(obj):Observable<any> {
+    return this.httpClient.post<any>(this.url + this.routes.api.rAttachDocs, obj);
+  }
+
 }
 
 

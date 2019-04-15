@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
 import { ROUTES } from 'src/app/model/api-routes';
+import { HttpService } from 'src/app/services/http.service';
 
 
 
@@ -21,7 +22,7 @@ export class DocsComponent implements OnInit {
   holdIndex: number = -1;
   holdName: string = "";
   route: ROUTES = new ROUTES();
-  constructor() { }
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
   }
@@ -72,13 +73,32 @@ export class DocsComponent implements OnInit {
     if(event) {
       
       
+      //Remove the Files..
       this.files.splice(this.holdIndex,1);
       this.show = false;
 
+      //Get The Len of current files..
+      let lenFiles = this.files.length;
+      let obj = {"attach_id": this.attach_id, "fname" : this.holdName }
+      //If there is nothing on the array
+      //Remove this record and file from server..
+      //update the database as well...
+      if(lenFiles == 0) {
+          
+          this.http.removeAllAttachDocs({data: obj}).subscribe((response) => {
+            // console.log(response);
+          })
+      }else if(lenFiles > 0) {
+        obj['file_info'] = JSON.stringify(this.items['file_info'])
+        this.http.removeSingleAttachDocs({data: obj}).subscribe((response) => {
+            //console.log(response);
+        });
+      }
+
       //Send http request for the delete of the file and update the database..
-      console.log(this.files.length);
-      console.log(this.holdName);
-      console.log(this.items);
+     
+      
+
     }else {
       this.show = event;
     }
