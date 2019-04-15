@@ -38,7 +38,7 @@ export class IdentifyComponent implements OnInit {
   docSize: number = 0;
   ticketSize: number = 0;
   otherSize: number = 0;
-
+  holdIdentify: any = null; // When a user deletes all the record re download the identify..
 
   constructor(private http: HttpService) { }
 
@@ -54,31 +54,42 @@ export class IdentifyComponent implements OnInit {
     } 
     
     //Communicates with esri  map events...
+    //Main Purpose right know could change...
+    //is when user clicks on the map to identify it returns information...
     this.esriMap.onIdentifyEvent.subscribe((response) => {
-        //console.log(response);
-        let x = response['pntCenter'].x;
-        let y = response['pntCenter'].y;
-        this.http.getAttachDOCS({data: {x: x,y: y, m: this.buffer}}).subscribe((res) => {
-           if(res['msg']) {
-                res['msg'].forEach(element => {
-                  let geo = element['geojson'];
-                  if(geo.type == "Point") {
-
-                    element['geojson'] = new esri.geometry.Point(geojsonToArcGIS(element['geojson']));
-                  }else if(geo.type == "LineString") {
-                    element['geojson'] = new esri.geometry.Polyline(geojsonToArcGIS(element['geojson']));
-                  }else if(geo.type == "Polygon") {
-                    element['geojson'] = new esri.geometry.Polygon(geojsonToArcGIS(element['geojson']));
-                  }
-                   
-                });
-                this.attachments = res['msg'];
-                this.docSize = this.attachments.length;
-               //console.log(this.attachments);
-           }
-        });
-
+        console.log(response);
+        this.holdIdentify = response;
+        this.onDownloadDocs();
+        this.onDownloadTickets();
     });
+  }
+
+
+  onDownloadDocs() {
+    let x = this.holdIdentify['pntCenter'].x;
+    let y = this.holdIdentify['pntCenter'].y;
+    this.http.getAttachDOCS({data: {x: x,y: y, m: this.buffer}}).subscribe((res) => {
+       if(res['msg']) {
+            res['msg'].forEach(element => {
+              let geo = element['geojson'];
+              if(geo.type == "Point") {
+
+                element['geojson'] = new esri.geometry.Point(geojsonToArcGIS(element['geojson']));
+              }else if(geo.type == "LineString") {
+                element['geojson'] = new esri.geometry.Polyline(geojsonToArcGIS(element['geojson']));
+              }else if(geo.type == "Polygon") {
+                element['geojson'] = new esri.geometry.Polygon(geojsonToArcGIS(element['geojson']));
+              }
+               
+            });
+            this.attachments = res['msg'];
+            this.docSize = this.attachments.length;
+       }
+    });
+  }
+
+  onDownloadTickets() {
+
   }
 
   //When window is close..
@@ -88,6 +99,8 @@ export class IdentifyComponent implements OnInit {
     this.esriMap.setIdentifyEnable(false);
     this.close.emit(false);
   }
+
+
 
 
   //Function to reset the identify action...

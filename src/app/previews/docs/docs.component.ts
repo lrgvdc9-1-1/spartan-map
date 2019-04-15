@@ -16,6 +16,7 @@ export class DocsComponent implements OnInit {
   @Input() items: any = null;
   @Input() files: Array<string> = [];
   @Input() esriMap: EsriComponent = null;
+  @Output() onDelete = new EventEmitter<any>();
   @Output() openDoc = new EventEmitter<any>();
   show: boolean = false;
   bin: boolean = false;
@@ -87,6 +88,7 @@ export class DocsComponent implements OnInit {
           
           this.http.removeAllAttachDocs({data: obj}).subscribe((response) => {
             // console.log(response);
+            this.onDelete.emit(true); //Redownload only attach docs... the location identify..
           })
       }else if(lenFiles > 0) {
         obj['file_info'] = JSON.stringify(this.items['file_info'])
