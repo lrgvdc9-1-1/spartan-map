@@ -137,7 +137,10 @@ export class AttachOptionsComponent implements OnInit {
 
     //Process all the files to add to the FormData...
     for(var x =0; x < sFiles; x++) {
-      formData.append("upload[]", this.files[x], this.files[x].name);
+
+      let name = this.files[x].name.replace(/[^a-zA-Z. ]/g, ""); //Remove Any Special Characters...
+      console.log(name)
+      formData.append("upload[]", this.files[x], name);
     }
 
     //FormData Object

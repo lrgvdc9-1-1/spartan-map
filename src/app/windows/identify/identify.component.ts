@@ -65,7 +65,11 @@ export class IdentifyComponent implements OnInit {
   }
 
 
-  onDownloadDocs() {
+  onDownloadDocs(clear = false) {
+    if(clear){
+      this.esriMap.clearMainGraphics();
+    }
+   
     let x = this.holdIdentify['pntCenter'].x;
     let y = this.holdIdentify['pntCenter'].y;
     this.http.getAttachDOCS({data: {x: x,y: y, m: this.buffer}}).subscribe((res) => {

@@ -36,7 +36,7 @@
     </div>
     <br>
        <swiper [config]="config" class="swiper-container">
-        <app-docs-preview (onDelete)="onDownloadDocs()"  (openDoc)="ondoc($event)" [esriMap]="esriMap" *ngFor="let item of attachments" [files]="item.file_info.files" [items]="item" [attach_id]="item.attach_id"></app-docs-preview>
+        <app-docs-preview (onDelete)="onDownloadDocs(true)"  (openDoc)="ondoc($event)" [esriMap]="esriMap" *ngFor="let item of attachments" [files]="item.file_info.files" [items]="item" [attach_id]="item.attach_id"></app-docs-preview>
        </swiper>
       
     </div>
