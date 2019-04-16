@@ -167,6 +167,11 @@ export class EsriComponent implements OnInit {
     return this.enableIdentify;
   }
 
+  //Get Current Map
+  getMap():any{
+    return this.map;
+  }
+
   //Change the map cursor..
   setMapCursor(cursor:string) {
     this.map.setMapCursor(cursor);

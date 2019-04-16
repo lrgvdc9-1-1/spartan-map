@@ -16,6 +16,7 @@ export class MapToolbarComponent implements OnInit {
   @Output() openBookmark = new EventEmitter<any>();
   @Output() openAttach = new EventEmitter<any>();
   @Output() openIdentify = new EventEmitter<any>();
+  @Output() openMeasure = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class MapToolbarComponent implements OnInit {
   onMiniBar() {
       if(this.mini) {
         
-        this.style['width'] =   "350px";
+        this.style['width'] =   "394px";
       }else {
         this.style['width'] =  "90px";
       }
@@ -52,6 +53,10 @@ export class MapToolbarComponent implements OnInit {
 
   onOpenAttach() {
     this.openAttach.emit(true);
+  }
+
+  onOpenMeasure() {
+     this.openMeasure.emit(true);
   }
   onIdentify() {
     

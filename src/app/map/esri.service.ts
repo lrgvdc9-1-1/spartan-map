@@ -13,6 +13,7 @@ export class EsriService {
   loaded: boolean = false;
   map: any =  null;
   vector: any = null;
+  esriMeasurement: any = null;
   esrigeometryEngine: any = null;
   esriColor: any = null;
   esriCircle: any = null;
@@ -33,18 +34,19 @@ export class EsriService {
   }
 
   constructor() { 
-    this.loadModules();
+    this.loadEsriModule();
   }
 
-  loadModules() {
-    loadModules(["esri/Color", "esri/toolbars/draw", "esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
+  loadEsriModule() {
+    loadModules(["esri/Color","esri/dijit/Measurement", "esri/toolbars/draw", "esri/SpatialReference", "esri/map","esri/graphic","esri/geometry/Extent", "esri/dijit/FeatureTable", "esri/layers/FeatureLayer", "esri/layers/VectorTileLayer","esri/geometry/Circle", 
     "esri/geometry/Point", "esri/geometry/geometryEngine",
     "esri/symbols/SimpleMarkerSymbol","esri/symbols/SimpleLineSymbol", "esri/symbols/PictureMarkerSymbol"])
-    .then(([Color,Draw, SpatialReference, Map,Graphic,Extent, FeatureTable, 
+    .then(([Color,Measurement, Draw, SpatialReference, Map,Graphic,Extent, FeatureTable, 
       FeatureLayer, VectorTileLayer,Circle, Point,geometryEngine,
       SimpleMarkerSymbol,SimpleLineSymbol, PictureMarkerSymbol ]) => {
   
       this.map = Map;
+      this.esriMeasurement = Measurement;
       this.esrigeometryEngine = geometryEngine;
       this.esriDraw = Draw;
       this.esriExtent = Extent;

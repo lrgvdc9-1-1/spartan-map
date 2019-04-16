@@ -1,0 +1,16 @@
+<div class="window" cdkDrag [ngStyle]="style">
+  <div class="window-caption bg-steel">
+      <span style="width:34px;display:block; text-align: center;" class=" fas fa-tape"></span>
+      <span class="title">Measurement</span>
+      <div class="buttons">
+            <!-- <span *ngIf="visible" (click)="getHeight()" class="btn-min"></span>
+            <span *ngIf="!visible" (click)="getHeight()" class="btn-max"></span> -->
+          <span (click)="onClose()" class="btn-close"></span>
+      </div>
+  </div>
+  <div style="color: #9E2CCF !important"  class="window-content"> 
+    <div id="ms" class="container">
+
+    </div>   
+  </div>
+</div>

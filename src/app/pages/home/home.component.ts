@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   toolbar: boolean = true;
   identify: boolean = false;
   docView: boolean = false;
+  measure:boolean = false;
   url:string = ""
   constructor() { }
 
