@@ -1,22 +1,24 @@
-<ul *ngIf="!onEdit" class="items-list">
-    <li *ngFor="let item of comments">
-        <img class="avatar" src="https://svgshare.com/i/65U.svg">
-        <div>
-            <span class="label lblname" >{{item.first_name + " " + item.last_name}}</span>
-            <span class="label mif-alarm" style="float: right;">{{item.time_stamp}}</span>
+<div class="swiper-slide">
+    <ul *ngIf="!onEdit" class="items-list">
+        <li *ngFor="let item of comments">
+            <img class="avatar" src="https://svgshare.com/i/65U.svg">
+            <div>
+                <span class="label lblname" >{{item.first_name + " " + item.last_name}}</span>
+                <span class="label mif-alarm" style="float: right;">{{item.time_stamp}}</span>
+            </div>
+            
+            <span class="second-label">{{item.ticket_comments}}</span>
+            
+        </li>
+    </ul>
+    <form *ngIf="onEdit">
+        <div class="form-group">
+            <textarea [(ngModel)]="object.ticket_comments" uppercase style="height:140px;" data-role="textarea" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         
-        <span class="second-label">{{item.ticket_comments}}</span>
-        
-    </li>
-</ul>
-<form *ngIf="onEdit">
-    <div class="form-group">
-        <textarea [(ngModel)]="object.ticket_comments" uppercase style="height:140px;" data-role="textarea" [ngModelOptions]="{standalone: true}"></textarea>
-    </div>
-    
-    <div class="form-group">
-        <button (click)="onSubmit()" class="button">Submit Comment</button>
-    </div>
-    <div *ngIf="loading" data-role="activity" data-type="metro" data-style="color"></div>
-</form>
+        <div class="form-group">
+            <button (click)="onSubmit()" class="button">Submit Comment</button>
+        </div>
+        <div *ngIf="loading" data-role="activity" data-type="metro" data-style="color"></div>
+    </form>
+</div>
