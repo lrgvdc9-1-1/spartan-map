@@ -35,9 +35,16 @@ export class IdentifyComponent implements OnInit {
   @Output() openDoc = new EventEmitter<boolean>();
   
   attachments = null;
+  tickets = null;
   docSize: number = 0;
   ticketSize: number = 0;
   otherSize: number = 0;
+
+  //Handles the selection of the buttons..
+  docsSel: boolean = false;
+  ticketsSel: boolean = false;
+  otherSel: boolean = false;
+
   holdIdentify: any = null; // When a user deletes all the record re download the identify..
 
   constructor(private http: HttpService) { }
@@ -57,15 +64,15 @@ export class IdentifyComponent implements OnInit {
     //Main Purpose right know could change...
     //is when user clicks on the map to identify it returns information...
     this.esriMap.onIdentifyEvent.subscribe((response) => {
-        console.log(response);
         this.holdIdentify = response;
         this.onDownloadDocs();
         this.onDownloadTickets();
+
     });
   }
 
 
-  onDownloadDocs(clear = false) {
+  onDownloadDocs(clear:boolean = false) {
     if(clear){
       this.esriMap.clearMainGraphics();
     }
@@ -88,12 +95,73 @@ export class IdentifyComponent implements OnInit {
             });
             this.attachments = res['msg'];
             this.docSize = this.attachments.length;
+
+            if(this.docSize > 0) {
+              this.docsSel = true;
+              this.ticketsSel = false;
+              this.otherSel = false;
+            }
        }
     });
   }
 
-  onDownloadTickets() {
+  onDownloadTickets(clear:boolean = false) {
+    if(clear){
+      this.esriMap.clearMainGraphics();
+    }
+   
+    let x = this.holdIdentify['pntCenter'].x;
+    let y = this.holdIdentify['pntCenter'].y;
+    this.http.getTicketsByGeom({data: {x: x,y: y, m: this.buffer}}).subscribe((res) => {
+       if(res['msg']) {
+         
+            res['msg'].forEach(element => {
+              let geo = element['geojson'];
+              if(geo.type == "Point") {
 
+                element['geojson'] = new esri.geometry.Point(geojsonToArcGIS(element['geojson']));
+              }else if(geo.type == "LineString") {
+                element['geojson'] = new esri.geometry.Polyline(geojsonToArcGIS(element['geojson']));
+              }else if(geo.type == "Polygon") {
+                element['geojson'] = new esri.geometry.Polygon(geojsonToArcGIS(element['geojson']));
+              }
+               
+            });
+            this.tickets = res['msg'];
+            this.ticketSize = this.tickets.length;
+
+            if(this.ticketSize > 0) {
+
+                if(!this.docsSel) {
+                  this.docsSel = false;
+                  this.ticketsSel = true;
+                  this.otherSel = false;
+                }
+            }
+       }
+    });
+  }
+
+
+
+  //Function handles the on doc selection
+  onToggleDocSelec() {
+    this.docsSel = !this.docsSel;
+    this.ticketsSel = false;
+    this.otherSel = false;
+  }
+
+  onToggleTicketSelec() {
+  
+    this.ticketsSel = !this.ticketsSel;
+    this.docsSel = false;
+    this.otherSel = false;
+  }
+
+  onToggleOtherSelec() {
+    this.otherSel = !this.otherSel;
+    this.docsSel = false;
+    this.ticketsSel = false;
   }
 
   //When window is close..

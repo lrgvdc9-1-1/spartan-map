@@ -49,7 +49,9 @@ export class HttpService {
   getAttachDOCS(obj) :Observable<any> {
     return this.httpClient.post<any>(this.url + this.routes.api.gAttachDoc, obj);
   }
-
+  getTicketsByGeom(obj): Observable<any>{
+    return this.httpClient.post<any>(this.url + this.routes.api.gisTickets, obj);
+  }
   removeAllAttachDocs(obj):Observable<any> {
     return this.httpClient.post<any>(this.url + this.routes.api.dAllAttachDocs, obj);
   }

@@ -22,14 +22,14 @@
     <div>
       <br>
       <div style="text-align: center;">
-        <button [ngClass]="{'btnSelected': docsSel}" class="button outline bg-pink">
+        <button (click)="onToggleDocSelec()" [ngClass]="{'btnSelected': docsSel}" class="button outline bg-pink">
           DOCS
           <span class="badge">{{docSize}}</span></button>
-        <button [ngClass]="{'btnSelected': ticketsSel}" class="button outline bg-pink">
+        <button (click)="onToggleTicketSelec()" [ngClass]="{'btnSelected': ticketsSel}" class="button outline bg-pink">
           TICKETS
           <span class="badge">{{ticketSize}}</span>
         </button>
-        <button [ngClass]="{'btnSelected': otherSel}" class="button outline bg-pink">
+        <button (click)="onToggleOtherSelec()" [ngClass]="{'btnSelected': otherSel}" class="button outline bg-pink">
           OTHER
           <span class="badge">{{otherSize}}</span>
         </button>
