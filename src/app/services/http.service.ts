@@ -60,6 +60,11 @@ export class HttpService {
     return this.httpClient.post<any>(this.url + this.routes.api.rAttachDocs, obj);
   }
 
+  uploadQuickPick(obj):Observable<any> 
+  {
+    return this.httpClient.post<any>(this.url + this.routes.api.uploadPics, obj);
+  }
+
 }
 
 

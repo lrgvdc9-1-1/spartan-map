@@ -139,7 +139,7 @@ export class AttachOptionsComponent implements OnInit {
     for(var x =0; x < sFiles; x++) {
 
       let name = this.files[x].name.replace(/[^a-zA-Z. ]/g, ""); //Remove Any Special Characters...
-      console.log(name)
+      //console.log(name)
       formData.append("upload[]", this.files[x], name);
     }
 

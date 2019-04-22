@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EsriService } from '../esri.service';
 import { arcgisToGeoJSON } from '@esri/arcgis-to-geojson-utils';
+import { HttpService } from 'src/app/services/http.service';
 
 
 //We might used don't know yet...
@@ -20,6 +21,9 @@ export class EsriComponent implements OnInit {
   cityErrorsFeatures: any = null;
   cityErrorsAddress: any = null;
   
+  //Quick Pick Variables..
+  files: Array<File> = [];
+
   //Symbols
   selectionSymbol: any = null;
   buffSymbol:any = null;
@@ -29,6 +33,7 @@ export class EsriComponent implements OnInit {
   enableAttach: boolean = false;
   enableIdentify: boolean = false;
   attachDrawing: number = 0;
+  dragging: boolean = false;
   public buffRadius: number = 20; //DEFAULT BUFF IS 20 meters
 
   //Toolbar...s
@@ -43,7 +48,7 @@ export class EsriComponent implements OnInit {
   @Output() righClick = new EventEmitter<any>();
 
 
-  constructor(public service: EsriService) { }
+  constructor(public service: EsriService, private http: HttpService) { }
 
   ngOnInit() {
 
@@ -262,6 +267,47 @@ export class EsriComponent implements OnInit {
   
     this.righClick.emit(event);
     return false;
+  }
+
+
+  // =-=-=-=-=-=-=-= THIS IS FOR DRAG AND DROP FILES TO VIEW ON MAP SUCH AS QUICK PICK =-=-=-=-=-=-=-=-=-=-=-=-=-=
+  handleDragEnter() {
+    this.dragging = true;
+  }
+
+  handleDragLeave() {
+
+      this.dragging = false;
+  }
+
+  handleDrop(e) {
+      e.preventDefault();
+      this.dragging = false;
+      this.files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
+
+
+      const formData:FormData = new FormData();
+      const sFiles: number = this.files.length; 
+      var today = new Date();
+  
+      formData.append("userId", "3");
+      
+      formData.append("timestamp", today.getTime().toString());
+     
+      for(var x =0; x < sFiles; x++) {
+        let name = this.files[x].name.replace(/[^a-zA-Z.[0-9]+$ ]/g, ""); 
+        //Remove Any Special Characters...
+       if(name.indexOf(".jpg") > 0) {
+         formData.append("images[]", this.files[x], name);
+       } 
+       
+      }
+  
+      this.http.uploadQuickPick(formData).subscribe((rs) => {
+           console.log(rs);
+      })
+      console.log(this.files);
+
   }
 
 
