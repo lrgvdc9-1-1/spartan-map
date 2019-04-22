@@ -39,7 +39,7 @@ export class MapToolbarComponent implements OnInit {
   onMiniBar() {
       if(this.mini) {
         
-        this.style['width'] =   "394px";
+        this.style['width'] =   "444px";
       }else {
         this.style['width'] =  "90px";
       }
