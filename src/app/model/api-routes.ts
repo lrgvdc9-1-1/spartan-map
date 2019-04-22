@@ -14,7 +14,8 @@ export class ROUTES {
             sAttachDoc: "gis/addAttach/",
             gAttachDoc: "gis/getAttachDOCS/",
             dAllAttachDocs: "gis/delAllDOCS/",
-            rAttachDocs: "gis/removeAttachDOCS/"
+            rAttachDocs: "gis/removeAttachDOCS/",
+            gisTickets: "gis/getTICKETS"
       }
     }
 }
@@ -29,6 +30,7 @@ interface API_ROUTES {
     sAttachDoc?: string;
     gAttachDoc?: string;
     dAllAttachDocs?: string;
+    gisTickets?: string;
     rAttachDocs?: string;
     MAIN?: string;
     OFFICE?: string;
