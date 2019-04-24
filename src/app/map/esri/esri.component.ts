@@ -116,15 +116,21 @@ export class EsriComponent implements OnInit {
     this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {id: "ALL_ERRORS", outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
   
+    this.hParcelLayer = new this.service.esriFeatureLayer(this.service.hcadURL, {id: "hcad", outFields:["*"]})
+    this.wParcelLayer = new this.service.esriFeatureLayer(this.service.wcadURL, {id: "wcad", outFields: ["*"]})
+
+
+    //Quick Pick Layer..
     this.quickPickLayer = new esri.layers.GraphicsLayer();
     this.quickPickLayer.setMinScale(25000); // Set min Scale for the layer...
 
+    //City boundary..
     this.cityBoundary = new esri.layers.ArcGISDynamicMapServiceLayer(this.service.cityURL);
     this.cityBoundary.hide();
 
     //Add Layers into the map...
    // this.map.addLayer(this.vector);
-    this.map.addLayers([this.cityErrorsFeatures, this.quickPickLayer, this.cityBoundary]); //Add City Errors To Share with entities..
+    this.map.addLayers([this.cityErrorsFeatures, this.quickPickLayer,this.hParcelLayer, this.wParcelLayer, this.cityBoundary]); //Add City Errors To Share with entities..
     //this.map.addLayer(new this.service.esriFeatureLayer("https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/0", 
     //  {id:"wcad",mode: this.service.esriFeatureLayer.MODE_ONDEMAND, webglEnabled: true, showLabels: false, outFields: ["*"]}
     //));

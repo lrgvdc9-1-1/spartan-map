@@ -10,6 +10,8 @@ export class EsriService {
   vectorSubURL: string = "https://tiles.arcgis.com/tiles/HZn9sYWTEUxVRQW9/arcgis/rest/services/MapFlex_Sub/VectorTileServer";
   cityErrorURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Features/CityErrors/FeatureServer/1";
   cityErrorAddURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Features/CityErrors/FeatureServer/0"
+  hcadURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/1";
+  wcadURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/0";
   cityURL: string = "https://gis.lrgvdc911.org/arcgis/rest/services/Dynamic/CityMsag/MapServer";
   loaded: boolean = false;
   map: any =  null;
