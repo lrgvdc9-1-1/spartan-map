@@ -23,6 +23,10 @@ export class LayersListWindowComponent implements OnInit {
 
   ngOnInit() {
     this.quickpick = this.esriMap.getQuickPickVisible();
+
+    //get City Layer..
+    let cityB = this.esriMap.getCityLayer();
+    console.log(cityB);
     this.style = {
       position: "absolute", zIndex: 2,
       top: "0", 
@@ -31,8 +35,34 @@ export class LayersListWindowComponent implements OnInit {
       width: "40%", 
       height: "90%"
     } 
+
+    //If city layer is not turn off the check boxes..
+    if(!cityB.visible) {
+        this.city = false;
+        this.msag = false;
+    }else { // if the layer is visible we need to find out which check box is click from the layer
+      let lng = cityB.visibleLayers.length;
+      if(lng == 1) { //VisisbleLayers is an array type of numbers...
+        let option = cityB.visibleLayers[0]; //Lets get the first option we are assuming only one number should be involve..
+        
+        switch (option) { //This switch statement handles which layer to display...
+          case 0: //If option 0 is city
+            this.city = true;
+            break;
+          case 1: //If option 1 is msag.///
+            this.msag = true;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    //Handle the basemaps below...
+
     let key_selected = this.esriMap.getMap().getBasemap();
-    console.log("SELECTED BASE IS ", key_selected);  
+    
+    //Find out which basemap is selected...
     for(var key in esri['basemaps']) {
        
        let image = esri['basemaps'][key].thumbnailUrl;
