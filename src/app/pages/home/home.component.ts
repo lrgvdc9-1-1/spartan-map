@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   identify: boolean = false;
   docView: boolean = false;
   measure:boolean = false;
+  layers: boolean = false;
   url:string = ""
   constructor() { }
 

@@ -38,6 +38,7 @@ import { DocsComponent } from './previews/docs/docs.component';
 import {DocsWindowComponent} from './windows/docs-window/docs-window.component';
 import { SafePipe } from './safe.pipe';
 import { MeasurementComponent } from './windows/measurement/measurement.component';
+import { LayersListWindowComponent } from './windows/layers-list-window/layers-list-window.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -78,7 +79,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DocsComponent,
     DocsWindowComponent,
     SafePipe,
-    MeasurementComponent
+    MeasurementComponent,
+    LayersListWindowComponent
   ],
   imports: [
     BrowserModule,

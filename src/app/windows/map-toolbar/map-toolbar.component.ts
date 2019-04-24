@@ -17,6 +17,7 @@ export class MapToolbarComponent implements OnInit {
   @Output() openAttach = new EventEmitter<any>();
   @Output() openIdentify = new EventEmitter<any>();
   @Output() openMeasure = new EventEmitter<boolean>();
+  @Output() openLayers = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
@@ -64,5 +65,9 @@ export class MapToolbarComponent implements OnInit {
     this.esriMap.setMapCursor("pointer")//"url(assets/information.cur),auto");
     this.esriMap.setIdentifyEnable(true);
     //url(cursor1.png)
+  }
+
+  onOpenLayers() {
+      this.openLayers.emit(true);
   }
 }

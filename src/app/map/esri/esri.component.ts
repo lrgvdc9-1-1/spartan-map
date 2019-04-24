@@ -72,8 +72,13 @@ export class EsriComponent implements OnInit {
   //Creates the map based on configurations...
   loadMap() {
     console.log(esri);
+    esri.basemaps.mapflexvector = {
+      baseMapLayers: [{type: "VectorTile", url: this.service.vectorSubURL}],
+      thumbnailUrl: "assets/mapFlex.jpg",
+      title: "MapFlex Vector"
+    };
     //Create map instance..
-    this.map = new this.service.map("esri-map", {slider: false, logo: false});
+    this.map = new this.service.map("esri-map", {basemap: "mapflexvector",slider: false, logo: false});
 
     //Create symbols for toolbar..
     this.toolbarSymbols.point = new esri.symbol.PictureMarkerSymbol("assets/PurpleShinyPin.png", 50, 50);
@@ -100,7 +105,7 @@ export class EsriComponent implements OnInit {
     
     //Load layers below..
 
-    this.vector  = new this.service.vector(this.service.vectorSubURL);
+   // this.vector  = new this.service.vector(this.service.vectorSubURL);
     this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {id: "ALL_ERRORS", outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
     this.cityErrorsFeatures.setFeatureReduction({
@@ -109,7 +114,7 @@ export class EsriComponent implements OnInit {
     });
 
     //Add Layers into the map...
-    this.map.addLayer(this.vector);
+   // this.map.addLayer(this.vector);
     this.map.addLayer(this.cityErrorsFeatures); //Add City Errors To Share with entities..
     //this.map.addLayer(new this.service.esriFeatureLayer("https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/0", 
     //  {id:"wcad",mode: this.service.esriFeatureLayer.MODE_ONDEMAND, webglEnabled: true, showLabels: false, outFields: ["*"]}
@@ -267,6 +272,10 @@ export class EsriComponent implements OnInit {
   
     this.righClick.emit(event);
     return false;
+  }
+
+  changeBaseMap(key) {
+    this.map.setBasemap(key);
   }
 
 

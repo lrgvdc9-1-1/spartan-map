@@ -1,0 +1,60 @@
+<div class="window" cdkDrag [ngStyle]="style">
+  <div class="window-caption bg-green">
+      <span class="icon mif-layers"></span>
+      <span class="title">Layer List</span>
+      <div class="buttons">
+          <span (click)="onClose()" class="btn-close"></span>
+      </div>
+  </div>
+  <div  class="window-content">
+    <br>
+      <div style="text-align: center;">
+          <button (click)="onList()" style="width: 100px;" [ngClass]="{'btnSelected': listSel}"  class="button outline">List</button>
+          <button (click)="onBase()" style="width: 100px;" [ngClass]="{'btnSelected': baseSel}"  class="button outline">BaseMaps</button>
+      </div>
+      <div style="border-radius: 10px;margin-top: 10px; margin-left: 20px; margin-right: 20px; background: white;">
+          <br> 
+            <div *ngIf="listSel" class="row  flex-justify-end">
+                <div class="cell-3"></div>
+                <div class="cell-4">
+                    <ul  class="custom-list-marker">
+                      <li >
+                          <input type="checkbox" data-role="checkbox" >
+                          QuickPick
+                      </li>
+                      <li ><input type="checkbox" data-role="checkbox" >
+                        H Parcel</li>
+                      <li ><input type="checkbox" data-role="checkbox" > 
+                        W Parcel</li>
+                
+                      <li ><input type="checkbox" data-role="checkbox" >
+                        Widgets</li>
+                      <li ><input type="checkbox" data-role="checkbox" >Contacts</li>
+                
+                    </ul>
+                </div>
+                <div class="cell-4"></div>
+            </div>
+            <div *ngIf="baseSel">
+                <ul id="base"
+                data-role="list"
+               
+                
+                data-cls-list="unstyled-list row flex-justify-center mt-4"
+                data-cls-list-item="cell-sm-6 cell-md-4"
+            >
+                <li (click)="onChangeBase(item.key)" *ngFor="let item of basemaps">
+                    <figure class="text-center">
+                        <div class="img-container thumbnail">
+                            <img [src]="item.image" alt="Gogen, When is the wedding">
+                        </div>
+                        <figcaption class="base-name">{{item.title}}</figcaption>
+                    </figure>
+                </li>
+            </ul>
+            </div>
+         
+      </div>
+    
+  </div>
+</div>

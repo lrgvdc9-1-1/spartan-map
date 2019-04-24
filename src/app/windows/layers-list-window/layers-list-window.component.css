@@ -1,0 +1,13 @@
+.btnSelected {
+    background-color: #E52888 !important;
+}
+
+#base > li:hover {
+    cursor: pointer;
+    
+}
+
+.thumbnail:hover {
+    background: #E52888;    
+}
+
