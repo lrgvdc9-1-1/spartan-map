@@ -65,6 +65,10 @@ export class HttpService {
     return this.httpClient.post<any>(this.url + this.routes.api.uploadPics, obj);
   }
 
+  getQuickPick(obj):Observable<any> {
+    return this.httpClient.post<any>(this.url + this.routes.api.gQuickPick, obj);
+  }
+
 }
 
 

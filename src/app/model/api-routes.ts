@@ -1,6 +1,6 @@
 export class ROUTES {
     api: API_ROUTES
- 
+
     constructor() {
       this.api = {
             MAIN: "https://gis.lrgvdc911.org/DOCS/",
@@ -16,7 +16,8 @@ export class ROUTES {
             dAllAttachDocs: "gis/delAllDOCS/",
             rAttachDocs: "gis/removeAttachDOCS/",
             gisTickets: "gis/getTICKETS",
-            uploadPics: "qprocess/uploadPic2/"
+            uploadPics: "qprocess/uploadPic2/",
+            gQuickPick: "qprocess/getBoxPics/"
       }
     }
 }
@@ -36,4 +37,5 @@ interface API_ROUTES {
     MAIN?: string;
     OFFICE?: string;
     uploadPics?: string;
+    gQuickPick?: string;
   }

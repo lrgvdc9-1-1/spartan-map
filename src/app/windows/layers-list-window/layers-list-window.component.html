@@ -19,7 +19,7 @@
                 <div class="cell-4">
                     <ul  class="custom-list-marker">
                       <li >
-                          <input type="checkbox" data-role="checkbox" >
+                          <input (click)="onChangeQuickPick()" [(ngModel)]="quickpick" type="checkbox" data-role="checkbox" >
                           QuickPick
                       </li>
                       <li ><input type="checkbox" data-role="checkbox" >
@@ -43,12 +43,12 @@
                 data-cls-list="unstyled-list row flex-justify-center mt-4"
                 data-cls-list-item="cell-sm-6 cell-md-4"
             >
-                <li (click)="onChangeBase(item.key)" *ngFor="let item of basemaps">
+                <li (click)="onChangeBase(item.key, i)" *ngFor="let item of basemaps; index as i">
                     <figure class="text-center">
-                        <div class="img-container thumbnail">
+                        <div [ngClass]="{'btnSelected': item.selection}" class="img-container thumbnail">
                             <img [src]="item.image" alt="Gogen, When is the wedding">
                         </div>
-                        <figcaption class="base-name">{{item.title}}</figcaption>
+                        <figcaption [ngClass]="{'txtColor': item.selection}" class="base-name">{{item.title}}</figcaption>
                     </figure>
                 </li>
             </ul>

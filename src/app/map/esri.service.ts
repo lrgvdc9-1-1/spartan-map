@@ -33,6 +33,11 @@ export class EsriService {
     point: 1, polyline: 2, polygon: 3
   }
 
+  cameraGraphics: PICK = {HOME: "assets/Home-48.png", 
+    MOBILE: "assets/MHome-48.png",      PICNEW: "assets/New-48.png", STREETSIGN : "assets/Signpost-48.png",
+    FIRE: "assets/Fire_Hydrant-48.png", BUSINESS : "assets/Business-48.png"
+  }
+
   constructor() { 
     this.loadEsriModule();
   }
@@ -62,6 +67,31 @@ export class EsriService {
       this.esriSimpleLineSymbol    = SimpleLineSymbol;
       this.esriSimpleMarkerSymbol  = SimpleMarkerSymbol;
       this.loaded = true;
+
+
+      //Configure the camera objects..
+      this.cameraGraphics.HomeObj = new PictureMarkerSymbol(this.cameraGraphics.HOME, 30, 30);
+      this.cameraGraphics.MobileObj = new PictureMarkerSymbol(this.cameraGraphics.MOBILE, 34, 34)
+      this.cameraGraphics.PicNewObj = new PictureMarkerSymbol(this.cameraGraphics.PICNEW, 30, 30);
+      this.cameraGraphics.StreetSignObj = new PictureMarkerSymbol(this.cameraGraphics.STREETSIGN, 30, 30);
+      this.cameraGraphics.FireObj = new PictureMarkerSymbol(this.cameraGraphics.FIRE, 30, 30);
+      this.cameraGraphics.BusObj  = new PictureMarkerSymbol(this.cameraGraphics.BUSINESS, 30, 30);
     });
   }
+}
+
+interface PICK {
+  BUSINESS?: string;
+  BusObj?: any;
+  FIRE?: string;
+  FireObj?: any;
+  HOME?: string;
+  HomeObj?: any;
+  MOBILE?: string;
+  MobileObj?: any;
+  PICNEW?: string;
+  PicNewObj?: any;
+  STREETSIGN?: string;
+  StreetSignObj?: any;
+
 }

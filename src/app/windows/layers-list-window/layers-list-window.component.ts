@@ -11,15 +11,16 @@ declare var esri;
 export class LayersListWindowComponent implements OnInit {
   public style: any = {};
   public basemaps: Array<any> = [];
+  holdBasemapIndex: number = -1;
   listSel: boolean = true;
   baseSel: boolean = false;
-
+  quickpick: boolean = true;
   @Input() esriMap: EsriComponent = null;
   @Output() close = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
-
+    this.quickpick = this.esriMap.getQuickPickVisible();
     this.style = {
       position: "absolute", zIndex: 2,
       top: "0", 
@@ -27,12 +28,22 @@ export class LayersListWindowComponent implements OnInit {
       bottom: "30px",
       width: "40%", 
       height: "90%"
-    }   
+    } 
+    let key_selected = this.esriMap.getMap().getBasemap();
+    console.log("SELECTED BASE IS ", key_selected);  
     for(var key in esri['basemaps']) {
        
        let image = esri['basemaps'][key].thumbnailUrl;
        let title = esri['basemaps'][key].title;
-       this.basemaps.push({"key" : key,"selection" : false, "image" : image, "title" : title});
+       
+       this.basemaps.push({"key" : key,
+       "selection" : (key_selected == key ? true : false),
+        "image" : image, "title" : title});
+
+        if(key_selected == key) {
+          this.holdBasemapIndex = this.basemaps.length - 1;
+        }
+        
     }
    
   }
@@ -46,14 +57,21 @@ export class LayersListWindowComponent implements OnInit {
     this.listSel = true;
     
   }
+
+  onChangeQuickPick() {
+    this.esriMap.setVisibleQuickPick(!this.quickpick);
+  }
   onBase() {
     this.baseSel = true;
     this.listSel = false;
     
   }
 
-  onChangeBase(key) {
-    console.log(key);
+  onChangeBase(key, index) {
+  
+    this.basemaps[this.holdBasemapIndex].selection = false;
+    this.holdBasemapIndex = index;
+    this.basemaps[index].selection = true;
     this.esriMap.changeBaseMap(key);
   }
 

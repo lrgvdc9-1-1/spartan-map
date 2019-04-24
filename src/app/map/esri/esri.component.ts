@@ -20,7 +20,13 @@ export class EsriComponent implements OnInit {
   vector: any  =null;
   cityErrorsFeatures: any = null;
   cityErrorsAddress: any = null;
-  
+  hParcelLayer: any = null;
+  wParcelLayer: any = null;
+  quickPickLayer: any = null;
+
+  //Hold Extent change..
+  holdExtent: any = null;
+
   //Quick Pick Variables..
   files: Array<File> = [];
 
@@ -75,7 +81,7 @@ export class EsriComponent implements OnInit {
     esri.basemaps.mapflexvector = {
       baseMapLayers: [{type: "VectorTile", url: this.service.vectorSubURL}],
       thumbnailUrl: "assets/mapFlex.jpg",
-      title: "MapFlex Vector"
+      title: "MapFlex Sub Vector"
     };
     //Create map instance..
     this.map = new this.service.map("esri-map", {basemap: "mapflexvector",slider: false, logo: false});
@@ -105,7 +111,7 @@ export class EsriComponent implements OnInit {
     
     //Load layers below..
 
-   // this.vector  = new this.service.vector(this.service.vectorSubURL);
+   
     this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {id: "ALL_ERRORS", outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
     this.cityErrorsFeatures.setFeatureReduction({
@@ -113,9 +119,12 @@ export class EsriComponent implements OnInit {
       clusterRadius: 50
     });
 
+    this.quickPickLayer = new esri.layers.GraphicsLayer();
+    this.quickPickLayer.setMinScale(15000); // Set min Scale for the layer...
+
     //Add Layers into the map...
    // this.map.addLayer(this.vector);
-    this.map.addLayer(this.cityErrorsFeatures); //Add City Errors To Share with entities..
+    this.map.addLayers([this.cityErrorsFeatures, this.quickPickLayer]); //Add City Errors To Share with entities..
     //this.map.addLayer(new this.service.esriFeatureLayer("https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/0", 
     //  {id:"wcad",mode: this.service.esriFeatureLayer.MODE_ONDEMAND, webglEnabled: true, showLabels: false, outFields: ["*"]}
     //));
@@ -126,6 +135,7 @@ export class EsriComponent implements OnInit {
         //Create toolbar once map is loaded.. needed...
         this.toolbar = new this.service.esriDraw(this.map, {showTooltips: false});  
         this.homeExtent = this.map.extent;
+        console.log(this.map);
          //Setup Toolbar events...
          this.toolbarEvents();
     });
@@ -152,6 +162,19 @@ export class EsriComponent implements OnInit {
         }
     });
 
+
+    //Listener when extent changes on the map..
+    this.map.on('extent-change', object => {
+
+      let extent = esri.geometry.webMercatorToGeographic(object.extent);
+      
+      if(this.quickPickLayer.isVisibleAtScale(this.map.getScale())) {
+      
+        this.getCameraLayer(extent.xmin, extent.ymin, extent.xmax, extent.ymax, extent);
+      }else {
+        this.quickPickLayer.clear();
+      }
+    });
    
   }
 
@@ -225,7 +248,7 @@ export class EsriComponent implements OnInit {
     if(symbol){
       this.map.graphics.add(new this.service.esriGraphic(geometry, symbol));
     }else {
-      console.log(geometry);
+      
       if(geometry.type == "polyline") {
         this.map.graphics.add(new this.service.esriGraphic(geometry, this.buffSymbol));
       }else if(geometry.type == "point") {
@@ -238,6 +261,20 @@ export class EsriComponent implements OnInit {
 
     
    
+  }
+
+  //Control the Quick Pick Layer Visibility 
+  setVisibleQuickPick(option: boolean = false) {
+    
+    this.quickPickLayer.setVisibility(option);
+    if(!option) {
+      this.quickPickLayer.clear();
+      this.holdExtent = null;
+    }
+  }
+
+  getQuickPickVisible():boolean {
+    return this.quickPickLayer.visible;
   }
 
 
@@ -278,6 +315,58 @@ export class EsriComponent implements OnInit {
     this.map.setBasemap(key);
   }
 
+  getCameraLayer(xmin, ymin, xmax, ymax, extent:any = null) {
+
+        this.processQuickPick(xmin, ymin, xmax, ymax);
+       
+    }
+
+  processQuickPick(xmin, ymin, xmax, ymax) {
+    this.quickPickLayer.clear();
+
+    this.http.getQuickPick({data: { 
+      xmin: xmin, ymin: ymin, xmax: xmax, ymax: ymax,
+      orga: "6"}}).subscribe((response) => {
+          if(response.success) {
+            let i = response.data.length;
+            while(i--)
+            {
+              if(response.data[i].type == "H")
+              {
+                this.quickPickLayer.add(new this.service.esriGraphic(new this.service.esriPoint(
+                  response.data[i].x, response.data[i].y), this.service.cameraGraphics.HomeObj, response.data[i]
+                ));
+              }
+              else if(response.data[i].type == "B")
+              {  
+                  this.quickPickLayer.add(new this.service.esriGraphic(new this.service.esriPoint(
+                  response.data[i].x, response.data[i].y), this.service.cameraGraphics.BusObj, response.data[i]));
+              }
+              else if(response.data[i].type == "M")
+              {
+                this.quickPickLayer.add(new this.service.esriGraphic(new this.service.esriPoint(
+                  response.data[i].x, response.data[i].y), this.service.cameraGraphics.MobileObj, response.data[i]));
+              }
+              else if(response.data[i].type == "F")
+              {
+                this.quickPickLayer.add(new this.service.esriGraphic(new this.service.esriPoint(
+                  response.data[i].x, response.data[i].y), this.service.cameraGraphics.FireObj, response.data[i]));
+              }
+              else if(response.data[i].type == "N")
+              {
+                this.quickPickLayer.add(new this.service.esriGraphic(new this.service.esriPoint(
+                  response.data[i].x, response.data[i].y), this.service.cameraGraphics.PicNewObj, response.data[i]));
+              }
+              else if(response.data[i].type == "S")
+              {
+              this.quickPickLayer.add(new this.service.esriGraphic(new this.service.esriPoint(
+                  response.data[i].x, response.data[i].y), this.service.cameraGraphics.StreetSignObj, response.data[i]));
+              }
+            }
+        }
+      })
+  }
+
 
   // =-=-=-=-=-=-=-= THIS IS FOR DRAG AND DROP FILES TO VIEW ON MAP SUCH AS QUICK PICK =-=-=-=-=-=-=-=-=-=-=-=-=-=
   handleDragEnter() {
@@ -300,15 +389,15 @@ export class EsriComponent implements OnInit {
       var today = new Date();
   
       formData.append("userId", "3");
-      
+      formData.append("orga", "6");
       formData.append("timestamp", today.getTime().toString());
      
       for(var x =0; x < sFiles; x++) {
         let name = this.files[x].name.replace(/[^a-zA-Z.[0-9]+$ ]/g, ""); 
         //Remove Any Special Characters...
-       if(name.indexOf(".jpg") > 0) {
-         formData.append("images[]", this.files[x], name);
-       } 
+        if(name.indexOf(".jpg") > 0) {
+          formData.append("images[]", this.files[x], name);
+        } 
        
       }
   
