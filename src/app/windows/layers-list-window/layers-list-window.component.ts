@@ -15,6 +15,8 @@ export class LayersListWindowComponent implements OnInit {
   listSel: boolean = true;
   baseSel: boolean = false;
   quickpick: boolean = true;
+  city: boolean = false;
+  msag: boolean = false;
   @Input() esriMap: EsriComponent = null;
   @Output() close = new EventEmitter<boolean>();
   constructor() { }
@@ -73,6 +75,27 @@ export class LayersListWindowComponent implements OnInit {
     this.holdBasemapIndex = index;
     this.basemaps[index].selection = true;
     this.esriMap.changeBaseMap(key);
+  }
+
+  onChangeCity() {
+    this.city = !this.city;
+    this.msag = false;
+    if(!this.city) {
+      this.esriMap.hideCityLayer();
+    }else{
+      this.esriMap.showCityLayer();
+    }
+  }
+
+  onChangeMSAG() {
+
+    this.msag = !this.msag;
+    this.city = false;
+    if(!this.msag) {
+      this.esriMap.hideCityLayer();
+    }else {
+      this.esriMap.showMSAGLayer();
+    }
   }
 
 }

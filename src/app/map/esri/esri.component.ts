@@ -20,6 +20,7 @@ export class EsriComponent implements OnInit {
   vector: any  =null;
   cityErrorsFeatures: any = null;
   cityErrorsAddress: any = null;
+  cityBoundary: any = null;
   hParcelLayer: any = null;
   wParcelLayer: any = null;
   quickPickLayer: any = null;
@@ -114,17 +115,16 @@ export class EsriComponent implements OnInit {
    
     this.cityErrorsFeatures = new this.service.esriFeatureLayer(this.service.cityErrorURL, {id: "ALL_ERRORS", outFields: ["*"]});
     this.cityErrorsFeatures.setDefinitionExpression("qaqc = 'ERROR' and feature_cl = 'SSAP'");
-    this.cityErrorsFeatures.setFeatureReduction({
-      type: "cluster",
-      clusterRadius: 50
-    });
-
+  
     this.quickPickLayer = new esri.layers.GraphicsLayer();
-    this.quickPickLayer.setMinScale(15000); // Set min Scale for the layer...
+    this.quickPickLayer.setMinScale(25000); // Set min Scale for the layer...
+
+    this.cityBoundary = new esri.layers.ArcGISDynamicMapServiceLayer(this.service.cityURL);
+    this.cityBoundary.hide();
 
     //Add Layers into the map...
    // this.map.addLayer(this.vector);
-    this.map.addLayers([this.cityErrorsFeatures, this.quickPickLayer]); //Add City Errors To Share with entities..
+    this.map.addLayers([this.cityErrorsFeatures, this.quickPickLayer, this.cityBoundary]); //Add City Errors To Share with entities..
     //this.map.addLayer(new this.service.esriFeatureLayer("https://gis.lrgvdc911.org/arcgis/rest/services/Features/Parcels/FeatureServer/0", 
     //  {id:"wcad",mode: this.service.esriFeatureLayer.MODE_ONDEMAND, webglEnabled: true, showLabels: false, outFields: ["*"]}
     //));
@@ -232,6 +232,23 @@ export class EsriComponent implements OnInit {
 
   }
 
+  getCityLayer():any {
+    return this.cityBoundary;
+  }
+
+  showCityLayer() {
+    this.cityBoundary.show();
+    this.cityBoundary.setVisibleLayers([0]);
+  }
+
+  showMSAGLayer() {
+    this.cityBoundary.show();
+    this.cityBoundary.setVisibleLayers([1]);
+  }
+
+  hideCityLayer() {
+    this.cityBoundary.hide();
+  }
 
   setIdentifyEnable(choice) {
     this.enableIdentify = choice;
