@@ -24,7 +24,7 @@ export class AttachOptionsComponent implements OnInit {
   @Input() esriMap:  EsriComponent; //Control the map if needed..
   @Output() close = new EventEmitter<any>(); //Tell the parent close the itself window
   
-  @ViewChild('files', {static: false}) filesHTML; 
+  @ViewChild('files', {static: false}) filesHTML;  //Made a change here
   
   files: FileList; //Hold the files upload to the system..
   
