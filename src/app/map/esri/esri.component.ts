@@ -72,6 +72,13 @@ export class EsriComponent implements OnInit {
             clearInterval(timeout); //Stop the looping..
           }
     }, 40);
+
+   //Here setup ipc communication for zoom in to map.
+   if(window['ipc']){ //If the IPC is available setup listener..
+      window['ipc'].on("zoom-to-ticket", (event, data) =>{
+          alert("I RAN IPC IS GOOD TESTING");
+      })
+   } 
       
    
   }
