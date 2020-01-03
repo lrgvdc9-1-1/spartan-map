@@ -107,6 +107,10 @@ export class CUSER {
         }
     }
 
+    setUserId(userid: number){
+        this.properties.user_id = userid;
+    }
+
     setFName(fname: string) {
         this.properties.first_name = fname;
     }
@@ -120,6 +124,10 @@ export class CUSER {
 
     setEmail(email: string) {
         this.properties.email = email;
+    }
+
+    getUserId():number{
+        return this.properties.user_id;
     }
 
     getFName():string {
