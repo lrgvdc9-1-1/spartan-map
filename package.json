@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
-    "build": "ng build --prod --baseHref=./ ",
+    "build": "ng build --prod --baseHref=./ && node move-package.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
