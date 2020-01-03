@@ -4,6 +4,7 @@ import {TICKETiNBOX} from '../../model/interface';
 import { EsriComponent } from 'src/app/map/esri/esri.component';
 import { EsriService } from 'src/app/map/esri.service';
 import {ResizeEvent} from 'angular-resizable-element';
+import { ConfigsService } from 'src/app/services/configs.service';
 
 @Component({
   selector: 'app-inbox-window',
@@ -18,26 +19,43 @@ export class InboxComponent implements OnInit {
   
   inbox: Array<TICKETiNBOX> = [];
   inboxSelected: TICKETiNBOX = null;
-  constructor(private service: HttpService, private esriService: EsriService) { }
+  constructor(private service: HttpService,private config: ConfigsService, private esriService: EsriService) { }
 
   ngOnInit() {
 
-    //Download Inbox For Panell...
-    this.getInbox();
+      //If the communication pipe exists then listen for updates..
+      if(window['ipc']){
+        //get user information when login to the app..
+        window['ipc'].on('get-user-info', (event, data:any) => {
+           console.log("USER INFORMATION IS");
+           console.log(data);
+           this.config.selfuser.setUserId(data.user_id);
+           console.log(this.config.selfuser);
+            //Download Inbox For Panell...
+           this.getInbox();
+           
+        });
+      }
+   
+   // this.getInbox();
   }
 
   
 
   getInbox() {
-    
-    this.service.getInbox(17).subscribe((inbox) => {
-      var len = inbox.data.length;
-      let data:Array<TICKETiNBOX> = (inbox.data.length > 0) ? inbox.data : [];
-     
-      console.log(data);
-      this.inbox = data;
-     
-  });
+
+      if(this.config.selfuser.getUserId() && this.config.selfuser.getUserId() != 0){
+       console.log(this.config.selfuser);
+        this.service.getInbox(this.config.selfuser.getUserId()).subscribe((inbox) => {
+          var len = inbox.data.length;
+          let data:Array<TICKETiNBOX> = (inbox.data.length > 0) ? inbox.data : [];
+        
+         // console.log(data);
+          this.inbox = data;
+        
+      });
+      }
+      
   }
 
   onRotate() {
